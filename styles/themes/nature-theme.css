@@ -1,0 +1,144 @@
+/* 🌿 High-End Nature Theme für KNEO */
+
+body {
+    background: linear-gradient(to bottom, #e0f7fa 0%, #e8f5e9 100%);
+    color: #2e7d32;
+}
+
+/* Header */
+#site-header {
+    background: linear-gradient(to right, #a5d6a7, #81c784);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#site-header h1 {
+    color: #1b5e20;
+    font-size: 3.5rem;
+    letter-spacing: 2px;
+}
+
+#site-header p {
+    color: #33691e;
+    font-size: 1.5rem;
+    margin-top: 8px;
+}
+
+#site-header nav a {
+    color: #1b5e20;
+    font-weight: bold;
+    padding: 8px 12px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+#site-header nav a:hover {
+    color: #ffffff;
+    background-color: #43a047;
+    border-radius: 5px;
+}
+
+/* Hero Bereich */
+#hero {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../assets/hero_background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+#hero h2 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+#hero p {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #c8e6c9;
+}
+
+#hero button {
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    color: #ffffff;
+    background: #43a047;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#hero button:hover {
+    background: #2e7d32;
+}
+
+/* Über mich */
+#about {
+    background: #ffffff;
+    padding: 60px 20px;
+}
+
+#about h2 {
+    color: #1b5e20;
+    margin-bottom: 20px;
+}
+
+#about p {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Projekte & Apps */
+.project-grid, .app-grid {
+    padding: 20px;
+}
+
+.project-card, .app-card {
+    background: #ffffff;
+    border: 2px solid #a5d6a7;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover, .app-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Terminal */
+#terminal {
+    background-color: #263238;
+    color: #00e676;
+    padding: 20px;
+    font-family: monospace;
+    margin: 20px 0;
+    border-radius: 10px;
+    overflow-x: auto;
+}
+
+/* Kontakt */
+#contact {
+    background: linear-gradient(to right, #c8e6c9, #e0f2f1);
+    padding: 60px 20px;
+}
+
+#contact h2 {
+    color: #1b5e20;
+    margin-bottom: 20px;
+}
+
+/* Footer */
+footer {
+    background: #a5d6a7;
+    padding: 20px;
+    text-align: center;
+    color: #1b5e20;
+    font-size: 0.9rem;
+}

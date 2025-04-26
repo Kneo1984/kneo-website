@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KNEO – Living Systems for a Living Future</title>
+
+    <!-- Fonts für modernes Design -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../styles/base/base.css">
+    <link rel="stylesheet" href="../styles/themes/nature-theme.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="site-header">
+        <h1>KNEO</h1>
+        <p>Living Systems for a Living Future</p>
+        <nav>
+            <a href="#about">Über KNEO</a>
+            <a href="#projects">Projekte</a>
+            <a href="#apps">App Suite</a>
+            <a href="#contact">Kontakt</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <h2>Willkommen bei KNEO</h2>
+        <p>Wo Technologie und Natur eins werden.</p>
+        <button onclick="scrollToSection('about')">Starte deine Reise</button>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <img src="../assets/dennis_profil.jpg" alt="Dennis Maier" id="profile-picture">
+        <h2>Über KNEO</h2>
+        <p>KNEO steht für die Vision, lebendige Systeme zu erschaffen, die die Natur respektieren und erweitern. Entdecke eine Zukunft, die atmet.</p>
+    </section>
+
+    <!-- Netzwerk Visualisierung -->
+    <section id="network-visual">
+        <!-- Canvas für Netzwerk wird automatisch per JavaScript eingefügt -->
+    </section>
+
+    <!-- Projekte Section -->
+    <section id="projects">
+        <h2>Projekte</h2>
+        <div class="project-grid">
+            <div class="project-card">🌿 Projekt 1</div>
+            <div class="project-card">🔮 Projekt 2</div>
+            <div class="project-card">🚀 Projekt 3</div>
+        </div>
+    </section>
+
+    <!-- App Suite Section -->
+    <section id="apps">
+        <h2>KNEOS App Suite</h2>
+
+        <div id="terminal">
+            <!-- Mini-Terminal wird per JS gefüllt -->
+        </div>
+
+        <div id="app-launcher">
+            <h3>Meine Apps</h3>
+            <div class="app-grid">
+                <div class="app-card">🌟 Flow</div>
+                <div class="app-card">📚 Seeds</div>
+                <div class="app-card">🔗 Connect</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontakt Section -->
+    <section id="contact">
+        <h2>Kontakt</h2>
+        <p>Du willst mit mir in Kontakt treten? Schreib mir: 
+            <a href="mailto:kneolekks@gmail.com">kneolekks@gmail.com</a>
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Dennis Maier – KNEO. Alle Rechte vorbehalten.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="./scripts/main.js"></script>
+    <script src="./scripts/animations.js"></script>
+    <script src="./scripts/network_visuals/nature_network.js"></script>
+    <script src="./scripts/terminal.js"></script>
+</body>
+</html>

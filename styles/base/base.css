@@ -1,0 +1,153 @@
+/* Basis Style für KNEO – Dennis Maier */
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Standard Body */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom right, #e0f7fa, #e8f5e9);
+    color: #2e7d32;
+    min-height: 100vh;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Header */
+header {
+    background: #a5d6a7;
+    text-align: center;
+    padding: 30px 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    font-size: 3rem;
+    color: #1b5e20;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.2rem;
+    color: #388e3c;
+}
+
+nav {
+    margin-top: 15px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #2e7d32;
+    font-weight: bold;
+    margin: 0 15px;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #ffffff;
+}
+
+/* Sections */
+section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+/* Hero Button */
+#hero button {
+    background-color: #43a047;
+    color: white;
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 30px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#hero button:hover {
+    background-color: #2e7d32;
+}
+
+/* Projekt- und App-Karten */
+.project-grid, .app-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.project-card, .app-card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    width: 200px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover, .app-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* Profilbild */
+#profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 3px solid #66bb6a;
+    animation: pulse 3s infinite;
+}
+
+/* Terminal */
+#terminal {
+    background-color: #263238;
+    color: #00e676;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: monospace;
+    margin: 30px 0;
+}
+
+/* Kontaktbereich */
+#contact {
+    background: #c8e6c9;
+    padding: 60px 20px;
+}
+
+#contact h2 {
+    color: #1b5e20;
+}
+
+/* Footer */
+footer {
+    background: #a5d6a7;
+    padding: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #2e7d32;
+}
+
+/* Pulsierende Animation */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(102, 187, 106, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 15px 10px rgba(102, 187, 106, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(102, 187, 106, 0.5);
+    }
+}

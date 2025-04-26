@@ -1,153 +1,216 @@
-/* Basis Style für KNEO – Dennis Maier */
-
-/* Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Standard Body */
+/* === Basis Layout und Schrift === */
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(to bottom right, #e0f7fa, #e8f5e9);
-    color: #2e7d32;
-    min-height: 100vh;
-    line-height: 1.6;
-    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    background: #e0f7fa;
+    color: #333;
 }
 
-/* Header */
-header {
-    background: #a5d6a7;
-    text-align: center;
-    padding: 30px 20px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+/* === Header Layout === */
+#site-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background: linear-gradient(to bottom, #a5d6a7, #c8e6c9);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-header h1 {
-    font-size: 3rem;
-    color: #1b5e20;
-    margin-bottom: 10px;
+.header-left {
+    flex: 1;
 }
 
-header p {
-    font-size: 1.2rem;
-    color: #388e3c;
+.main-nav {
+    flex: 2;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
 }
 
-nav {
-    margin-top: 15px;
-}
-
-nav a {
+.main-nav a {
     text-decoration: none;
     color: #2e7d32;
-    font-weight: bold;
-    margin: 0 15px;
-    font-size: 1.1rem;
+    font-weight: 600;
     transition: color 0.3s;
 }
 
-nav a:hover {
-    color: #ffffff;
-}
-
-/* Sections */
-section {
-    padding: 60px 20px;
-    text-align: center;
-}
-
-/* Hero Button */
-#hero button {
-    background-color: #43a047;
-    color: white;
-    padding: 12px 30px;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 30px;
-    margin-top: 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-#hero button:hover {
-    background-color: #2e7d32;
-}
-
-/* Projekt- und App-Karten */
-.project-grid, .app-grid {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-top: 20px;
-}
-
-.project-card, .app-card {
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-    width: 200px;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.project-card:hover, .app-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-}
-
-/* Profilbild */
-#profile-picture {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 20px;
-    border: 3px solid #66bb6a;
-    animation: pulse 3s infinite;
-}
-
-/* Terminal */
-#terminal {
-    background-color: #263238;
-    color: #00e676;
-    padding: 20px;
-    border-radius: 10px;
-    font-family: monospace;
-    margin: 30px 0;
-}
-
-/* Kontaktbereich */
-#contact {
-    background: #c8e6c9;
-    padding: 60px 20px;
-}
-
-#contact h2 {
+.main-nav a:hover {
     color: #1b5e20;
 }
 
-/* Footer */
-footer {
-    background: #a5d6a7;
-    padding: 20px;
-    text-align: center;
-    font-size: 0.9rem;
-    color: #2e7d32;
+/* === Social Links im Header === */
+.social-header-links {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-left: auto;
 }
 
-/* Pulsierende Animation */
-@keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(102, 187, 106, 0.5);
-    }
-    50% {
-        box-shadow: 0 0 15px 10px rgba(102, 187, 106, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(102, 187, 106, 0.5);
-    }
+.social-btn {
+    background-color: #66bb6a;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 5px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.social-btn:hover {
+    background-color: #4caf50;
+    transform: translateY(-2px);
+}
+
+/* === Hero Section === */
+#hero {
+    text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(to bottom, #dcedc8, #e8f5e9);
+}
+
+#hero h2 {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+#hero p {
+    font-size: 1.5em;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+#hero button {
+    background-color: #66bb6a;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+#hero button:hover {
+    background-color: #4caf50;
+    transform: translateY(-3px);
+}
+
+/* === About Section === */
+#about {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+#profile-picture {
+    display: block;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.social-links {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.social-links a {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    background: #66bb6a;
+    color: white;
+    font-weight: 600;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.social-links a:hover {
+    background: #4caf50;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* === Projekte Section === */
+#projects {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.project-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.project-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    min-width: 200px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    font-size: 1.2em;
+}
+
+/* === Apps Section === */
+#apps {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+#app-launcher {
+    margin-top: 40px;
+}
+
+.app-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.app-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    min-width: 150px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    font-size: 1.2em;
+}
+
+/* === Terminal Section === */
+#terminal {
+    background: #263238;
+    color: #cfd8dc;
+    padding: 20px;
+    margin: 20px auto;
+    width: 90%;
+    border-radius: 5px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* === Kontakt Section === */
+#contact {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+/* === Footer === */
+footer {
+    background: #a5d6a7;
+    color: #2e7d32;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9em;
+    box-shadow: 0 -2px 6px rgba(0,0,0,0.1);
 }

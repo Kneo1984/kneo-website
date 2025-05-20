@@ -336,3 +336,76 @@ body.dark-mode {
   background-color: #121212;
   color: #ccc;
 }
+/* 🌒 Dark Mode – optimierte Kontraste & Farben */
+
+body.dark-mode {
+  background-color: #121212;
+  color: #e8f5e9;
+}
+
+/* Headlines */
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4 {
+  color: #a8f4b3;
+}
+
+/* Fließtext, Listen & Links */
+.dark-mode p,
+.dark-mode li,
+.dark-mode a {
+  color: #e0e0e0;
+}
+
+.dark-mode a:hover {
+  color: #ffffff;
+}
+
+/* Navigation */
+.dark-mode nav.main-nav a {
+  color: #a8f4b3;
+}
+
+/* Projektkarten */
+.dark-mode .project-card,
+.dark-mode .app-card {
+  background-color: #1e1e1e;
+  color: #e0f2e9;
+  border-color: #77e18d;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode .project-card:hover,
+.dark-mode .app-card:hover {
+  background-color: #262626;
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+}
+
+/* Highlight-Projekt */
+.dark-mode .highlight-project {
+  border: 2px solid #a8f4b3;
+  background-color: #1b1b1b;
+}
+
+/* Footer */
+.dark-mode footer {
+  background-color: #181818;
+  color: #cccccc;
+}
+
+/* Terminal */
+.dark-mode #terminal {
+  background-color: #1e1e1e;
+  color: #a8f4b3;
+}
+
+/* Buttons */
+.dark-mode button {
+  background-color: #2e7d32;
+  color: #ffffff;
+}
+
+.dark-mode button:hover {
+  background-color: #388e3c;
+}

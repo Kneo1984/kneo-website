@@ -1,45 +1,51 @@
-// 🧠 KNEO MASTER SCRIPT – Letzte Stufe der kosmischen Entfaltung
+// 🌌 KNEO MASTER SCRIPT 2.0 – Kosmisch vollendet
 document.addEventListener("DOMContentLoaded", () => {
   const toggle = document.getElementById("darkToggle");
+  const header = document.querySelector("header");
 
-  // 🌗 Dark Mode mit Speicherung
+  // 🌗 DARK MODE LOGIK (inkl. Speicherung)
   if (localStorage.getItem("theme") === "dark") {
     document.body.classList.add("dark-mode");
-    toggle.checked = true;
+    if (toggle) toggle.checked = true;
   }
 
-  toggle.addEventListener("change", () => {
-    document.body.classList.toggle("dark-mode");
-    localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
-  });
+  if (toggle) {
+    toggle.addEventListener("change", () => {
+      document.body.classList.toggle("dark-mode");
+      const theme = document.body.classList.contains("dark-mode") ? "dark" : "light";
+      localStorage.setItem("theme", theme);
+    });
+  }
 
-  // 🌌 Sticky Header mit Shadow
-  const header = document.querySelector("header");
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 20) {
-      header.classList.add("sticky-shadow");
-    } else {
-      header.classList.remove("sticky-shadow");
-    }
-  });
+  // 🌌 STICKY HEADER MIT SHADOW
+  if (header) {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 20) {
+        header.classList.add("sticky-shadow");
+      } else {
+        header.classList.remove("sticky-shadow");
+      }
+    });
+  }
 
-  // 🔮 Easter Egg Modus – KNEO MODE
+  // 🔮 KNEO MODE (Ctrl + Alt + K)
   document.addEventListener("keydown", (e) => {
     if (e.ctrlKey && e.altKey && e.key.toLowerCase() === "k") {
+      alert("✨ KNEO MODE ACTIVATED ✨\nKosmisches Bewusstsein erweitert.");
       document.body.classList.toggle("dark-mode");
-      alert("✨ KNEO MODE ACTIVATED ✨");
     }
   });
 
-  // 📦 Modal-Launcher für App Cards (optional)
+  // 📦 APP-CARD LAUNCHER (Simuliert App-Start)
   const appCards = document.querySelectorAll(".app-card");
   appCards.forEach(card => {
     card.addEventListener("click", () => {
-      alert(`🚀 App "${card.textContent.trim()}" wird geöffnet... (Simulation)`);
+      const appName = card.textContent.trim();
+      alert(`🚀 App "${appName}" wird geöffnet... (Simulation)`);
     });
   });
 
-  // 💡 Smooth Scroll fix (optional bei Bedarf)
+  // 💡 SMOOTH SCROLL (Anker-Sprung weicher machen)
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener("click", function (e) {
       e.preventDefault();

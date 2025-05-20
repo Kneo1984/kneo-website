@@ -308,3 +308,31 @@ body.dark-mode {
 .dark-mode .social-header-links a {
   color: #a8f4b3;
 }
+.dark-mode body {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+.dark-mode section {
+  background-color: #181818;
+  color: #e0e0e0;
+}
+
+.dark-mode header {
+  background: linear-gradient(to right, #2c3e50, #1a1a1a);
+}
+
+.dark-mode .project-card,
+.dark-mode .app-card {
+  background-color: #222;
+  color: #a8f4b3;
+}
+
+.dark-mode a {
+  color: #81eeb8;
+}
+
+.dark-mode footer {
+  background-color: #121212;
+  color: #ccc;
+}

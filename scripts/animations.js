@@ -1,39 +1,34 @@
-// 🎬 KNEO ANIMATIONS – Sanft, natürlich, reaktiv
+// ✨ ANIMATIONS.js – Kosmischer Glanz & Bewegung
 
-/* --------------------------------------------------------
-   ✨ 1. Pulsierendes Profilbild bei Hover
--------------------------------------------------------- */
-const profilePicture = document.getElementById('profile-picture');
+// 🌟 Pulsierendes Glühen für das Profilbild
+document.addEventListener("DOMContentLoaded", () => {
+  const profilePicture = document.getElementById("profile-picture");
 
-if (profilePicture) {
-  profilePicture.style.transition = 'box-shadow 0.4s ease-in-out';
+  if (profilePicture) {
+    profilePicture.style.transition = 'box-shadow 0.4s ease-in-out';
 
-  profilePicture.addEventListener('mouseenter', () => {
-    profilePicture.style.boxShadow = '0 0 40px rgba(76, 175, 80, 0.9)';
-  });
+    profilePicture.addEventListener('mouseenter', () => {
+      profilePicture.style.boxShadow = '0 0 40px rgba(138, 43, 226, 0.9)'; // Neonlila-Puls
+    });
 
-  profilePicture.addEventListener('mouseleave', () => {
-    profilePicture.style.boxShadow = '0 0 20px rgba(34, 139, 34, 0.5)';
-  });
-}
+    profilePicture.addEventListener('mouseleave', () => {
+      profilePicture.style.boxShadow = '0 0 20px rgba(0, 255, 128, 0.5)'; // Kosmisches Grün
+    });
+  }
 
-/* --------------------------------------------------------
-   🌐 2. Sanftes Scrollen beim Klicken auf Navigationslinks
--------------------------------------------------------- */
-const navLinks = document.querySelectorAll('#site-header nav a');
+  // 🪐 Smooth Navigation Scroll
+  const navLinks = document.querySelectorAll('#site-header nav a, nav.main-nav a');
 
-navLinks.forEach(link => {
-  link.addEventListener('click', function (event) {
-    event.preventDefault();
+  navLinks.forEach(link => {
+    link.addEventListener('click', function (event) {
+      event.preventDefault();
 
-    const targetId = this.getAttribute('href')?.substring(1);
-    const targetElement = document.getElementById(targetId);
+      const targetId = this.getAttribute('href').substring(1);
+      const target = document.getElementById(targetId);
 
-    if (targetElement) {
-      targetElement.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
   });
 });

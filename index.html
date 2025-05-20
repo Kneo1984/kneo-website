@@ -5,20 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dennis Maier Website – Data Analyst | Living Systems</title>
 
-  <!-- ✨ Google Fonts für Eleganz -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 
-  <!-- ✨ Scroll-Effekte mit AOS -->
+  <!-- AOS Scroll Animation CSS -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
-  <!-- 🎨 Eigene Stylesheets -->
+  <!-- Custom Styles -->
   <link rel="stylesheet" href="styles/base/base.css" />
   <link rel="stylesheet" href="styles/themes/nature-theme.css" />
 </head>
 
 <body>
-
-  <!-- 🌗 Dark Mode Toggle oben rechts -->
+  <!-- 🌗 Dark Mode Toggle -->
   <div class="toggle-container">
     🌙 <label class="switch">
       <input type="checkbox" id="darkToggle" />
@@ -26,7 +25,7 @@
     </label>
   </div>
 
-  <!-- 🔰 HEADER mit Socials & Navigation -->
+  <!-- 🔰 HEADER -->
   <header id="site-header" data-aos="fade-down">
     <div class="header-left">
       <h1>Dennis Maier</h1>
@@ -44,20 +43,20 @@
     </div>
   </header>
 
-  <!-- 🎯 HERO SECTION – Einstieg -->
+  <!-- 🎯 HERO SECTION mit Particles Background -->
   <section id="hero" data-aos="zoom-in">
+    <div id="particles-js"></div> <!-- 🌌 Sternenstaub-Hintergrund -->
     <h2>Willkommen</h2>
     <p>Wo Technologie und Natur eins werden.</p>
     <button onclick="scrollToSection('about')">Starte deine Reise</button>
   </section>
 
-  <!-- 👤 ÜBER MICH – Intro mit Bild -->
+  <!-- 👤 ÜBER MICH -->
   <section id="about" data-aos="fade-up">
     <img src="assets/BewerbungsFotos.png" alt="Dennis Maier" id="profile-picture" />
     <h2>Über mich</h2>
     <p>
-      Ich bin Dennis Maier, leidenschaftlicher <strong>Datenanalyst</strong> mit dem Anspruch, Informationen in wertvolle Erkenntnisse zu verwandeln.  
-      Mit Blick für Muster, Gefühl für Systeme und einer Liebe zur Optimierung begleite ich Unternehmen ins datengetriebene Morgen.
+      Ich bin Dennis Maier, leidenschaftlicher <strong>Datenanalyst</strong> mit dem Anspruch, Informationen in wertvolle Erkenntnisse zu verwandeln.
     </p>
     <div class="social-links">
       <a href="https://www.linkedin.com/in/dennis-m-b6a6a6325/" target="_blank">🔗 LinkedIn Profil</a>
@@ -65,25 +64,22 @@
     </div>
   </section>
 
-  <!-- 🧠 NETZWERK VISUALISIERUNG -->
+  <!-- 🕸️ NETZWERK VISUALISIERUNG -->
   <section id="network-visual" data-aos="fade-up">
-    <!-- Dynamisches Netzwerk wird per JS (nature_network.js) generiert -->
+    <!-- Dynamisches Netzwerk durch JS -->
   </section>
 
-  <!-- 🚀 PROJEKTE-BEREICH -->
+  <!-- 📂 PROJEKTE -->
   <section id="projects" data-aos="fade-up">
     <h2>Meine Projekte</h2>
     <div class="project-grid">
-
-      <!-- Platzhalter-Projekte -->
       <div class="project-card" data-aos="fade-right">🌿 Nachhaltigkeit & Daten</div>
       <div class="project-card" data-aos="fade-up">🔮 AI & Mustererkennung</div>
       <div class="project-card" data-aos="fade-left">🚀 Automatisierung & Energie</div>
 
-      <!-- 🌊 Deep Sea Corals -->
       <div class="project-card highlight-project" data-aos="zoom-in-up">
         <h3>🌊 Deep Sea Corals – Datenanalyse</h3>
-        <p>Analyse von Tiefsee-Korallen & Schwämmen basierend auf NOAA-Daten.</p>
+        <p>Analyse von Tiefsee-Korallen & Schwämmen auf NOAA-Basis.</p>
         <ul>
           <li><a href="projects/deep-sea-corals/deep_sea_map.html" target="_blank">🌐 Interaktive Karte</a></li>
           <li><a href="projects/deep-sea-corals/DeepSea_Praesentation_DennisMaier_FINAL.pptx" target="_blank">📊 PowerPoint öffnen</a></li>
@@ -96,19 +92,13 @@
   <!-- ⚙️ APP SUITE -->
   <section id="apps" data-aos="fade-up">
     <h2>Dennis' App Suite</h2>
-
-    <!-- 🎛 TERMINAL (dynamisch über terminal.js) -->
-    <div id="terminal">
-      <!-- Interaktiver CLI-Simulator -->
-    </div>
-
-    <!-- 🧩 App Cards -->
+    <div id="terminal"></div>
     <div id="app-launcher">
       <h3>Meine Apps</h3>
       <div class="app-grid">
-        <div class="app-card">🌞 Flow</div>
-        <div class="app-card">📊 Seeds</div>
-        <div class="app-card">🔗 Connect</div>
+        <div class="app-card" data-aos="fade-up">🌞 Flow</div>
+        <div class="app-card" data-aos="fade-up">📚 Seeds</div>
+        <div class="app-card" data-aos="fade-up">🔗 Connect</div>
       </div>
     </div>
   </section>
@@ -116,25 +106,23 @@
   <!-- 📬 KONTAKT -->
   <section id="contact" data-aos="fade-up">
     <h2>Kontakt</h2>
-    <p>
-      Du willst mit mir in Kontakt treten?<br />
-      Schreib mir direkt:
+    <p>Du willst mit mir in Kontakt treten? Schreib mir:
       <a href="mailto:kneolekks@gmail.com">kneolekks@gmail.com</a>
     </p>
   </section>
 
-  <!-- 🔻 FUSSZEILE -->
+  <!-- 🔻 FOOTER -->
   <footer>
     <p>© 2025 Dennis Maier. Alle Rechte vorbehalten.</p>
   </footer>
 
-  <!-- ⚙️ DEINE JS-SKRIPTE -->
+  <!-- 📜 SCRIPTS -->
   <script src="scripts/main.js"></script>
   <script src="scripts/animations.js"></script>
   <script src="scripts/network_visuals/nature_network.js"></script>
   <script src="scripts/terminal.js"></script>
 
-  <!-- ✨ AOS Initialisierung -->
+  <!-- ✨ AOS aktivieren -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>AOS.init();</script>
 
@@ -146,13 +134,42 @@
     });
   </script>
 
-  <!-- 🔽 Scroll to Section (Hero Button Funktion) -->
+  <!-- 🌌 Particles.js Konfiguration -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
   <script>
-    function scrollToSection(id) {
-      const target = document.getElementById(id);
-      if (target) target.scrollIntoView({ behavior: "smooth" });
-    }
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 60, density: { enable: true, value_area: 800 } },
+        color: { value: "#4CAF50" },
+        shape: { type: "circle" },
+        opacity: { value: 0.2 },
+        size: { value: 3 },
+        line_linked: { enable: false },
+        move: { enable: true, speed: 0.6 }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: true, mode: "repulse" },
+          onclick: { enable: true, mode: "push" }
+        },
+        modes: {
+          repulse: { distance: 100 },
+          push: { particles_nb: 4 }
+        }
+      },
+      retina_detect: true
+    });
   </script>
+
+<!-- 🔽 Scroll zu Section -->
+<script>
+  function scrollToSection(id) {
+    const target = document.getElementById(id);
+    if (target) target.scrollIntoView({ behavior: "smooth" });
+  }
+</script> <!-- ✅ FEHLTE! -->
 
 </body>
 </html>
+

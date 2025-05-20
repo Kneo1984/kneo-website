@@ -1,10 +1,9 @@
-// KNEOS TERMINAL – Fancy & Funktional ✨
-// Erstellt ein interaktives Terminal mit Befehlen
+// 🧠 KNEOS TERMINAL – Kosmisch erweitert: Verlauf + Sound + Uhrzeit + Autoscroll
 
 document.addEventListener("DOMContentLoaded", function () {
   const terminal = document.getElementById("terminal");
 
-  // Füge Initialtext + Eingabefeld ins Terminal ein
+  // Terminal UI einfügen
   terminal.innerHTML = `
     <p style="color:lime;">✨ Willkommen im KNEOS Terminal ✨</p>
     <p style="color:cyan;">💡 Gib 'help' für Befehle ein.</p>
@@ -15,19 +14,42 @@ document.addEventListener("DOMContentLoaded", function () {
   const output = document.getElementById("terminal-output");
   const input = document.getElementById("terminal-input");
 
-  // Reagiere auf Enter
+  // 🎵 Sound Feedback
+  const commandSound = new Audio("https://cdn.pixabay.com/download/audio/2022/03/15/audio_cce2b0d6e0.mp3?filename=click-124467.mp3");
+
+  // 🕒 Uhrzeit-Anzeige
+  const timeParagraph = document.createElement("p");
+  timeParagraph.style.color = "lightblue";
+  timeParagraph.style.fontSize = "0.9rem";
+  timeParagraph.style.marginTop = "1rem";
+  timeParagraph.style.textAlign = "right";
+  timeParagraph.id = "terminal-time";
+  output.appendChild(timeParagraph);
+
+  function updateClock() {
+    const now = new Date();
+    const time = now.toLocaleTimeString("de-DE");
+    const date = now.toLocaleDateString("de-DE");
+    timeParagraph.textContent = `🕒 ${date} – ${time}`;
+  }
+
+  updateClock();
+  setInterval(updateClock, 1000);
+
+  // 🎯 Eingabe verarbeiten
   input.addEventListener("keydown", function (e) {
     if (e.key === "Enter") {
       const command = input.value.trim().toLowerCase();
       if (command) {
         writeToTerminal(`> ${command}`, "white");
+        commandSound.play();
         handleCommand(command);
         input.value = "";
       }
     }
   });
 
-  // Befehlsverarbeitung
+  // 🧠 Kommandoverarbeitung
   function handleCommand(cmd) {
     switch (cmd) {
       case "help":
@@ -50,16 +72,17 @@ document.addEventListener("DOMContentLoaded", function () {
         break;
       case "clear":
         output.innerHTML = "";
+        output.appendChild(timeParagraph); // Uhrzeit erhalten
         break;
       default:
         writeToTerminal(`❓ Unbekannter Befehl: "${cmd}". Gib 'help' ein.`, "orange");
     }
 
-    // Autoscroll
+    // ✅ Autoscroll – jetzt korrekt eingebettet
     terminal.scrollTop = terminal.scrollHeight;
   }
 
-  // Hilfsfunktion für Ausgabe
+  // 📤 Ausgabe-Helfer
   function writeToTerminal(text, color = "lightgreen") {
     const response = document.createElement("p");
     response.style.color = color;

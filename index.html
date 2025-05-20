@@ -1,119 +1,158 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dennis Maier – Data Analyst | Living Systems</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dennis Maier Website – Data Analyst | Living Systems</title>
 
-    <!-- Fonts für modernes Design -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <!-- ✨ Google Fonts für Eleganz -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="styles/base/base.css">
-    <link rel="stylesheet" href="styles/themes/nature-theme.css">
+  <!-- ✨ Scroll-Effekte mit AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <!-- 🎨 Eigene Stylesheets -->
+  <link rel="stylesheet" href="styles/base/base.css" />
+  <link rel="stylesheet" href="styles/themes/nature-theme.css" />
 </head>
 
 <body>
-    <!-- Header -->
-    <header id="site-header">
-        <div class="header-left">
-            <h1>Dennis Maier</h1>
-            <p>Data Analyst – Living Systems & Future Thinking</p>
-        </div>
-        <nav class="main-nav">
-            <a href="#about">Über mich</a>
-            <a href="#projects">Projekte</a>
-            <a href="#apps">App Suite</a>
-            <a href="#contact">Kontakt</a>
-        </nav>
-        <div class="social-header-links">
-            <a href="https://github.com/Kneo1984/kneo-website" target="_blank" class="social-btn">GitHub</a>
-            <a href="https://www.linkedin.com/in/dennis-m-b6a6a6325/" target="_blank" class="social-btn">LinkedIn</a>
-        </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section id="hero">
-        <h2>Willkommen</h2>
-        <p>Wo Technologie und Natur eins werden.</p>
-        <button onclick="scrollToSection('about')">Starte deine Reise</button>
-    </section>
+  <!-- 🌗 Dark Mode Toggle oben rechts -->
+  <div class="toggle-container">
+    🌙 <label class="switch">
+      <input type="checkbox" id="darkToggle" />
+      <span class="slider round"></span>
+    </label>
+  </div>
 
-    <!-- About Section -->
-    <section id="about">
-        <img src="assets/BewerbungsFotos.png" alt="Dennis Maier" id="profile-picture">
+  <!-- 🔰 HEADER mit Socials & Navigation -->
+  <header id="site-header" data-aos="fade-down">
+    <div class="header-left">
+      <h1>Dennis Maier</h1>
+      <p>Data Analyst – Living Systems & Future Thinking</p>
+    </div>
+    <nav class="main-nav">
+      <a href="#about">Über mich</a>
+      <a href="#projects">Projekte</a>
+      <a href="#apps">App Suite</a>
+      <a href="#contact">Kontakt</a>
+    </nav>
+    <div class="social-header-links">
+      <a href="https://github.com/Kneo1984/kneo-website" target="_blank" class="social-btn">GitHub</a>
+      <a href="https://www.linkedin.com/in/dennis-m-b6a6a6325/" target="_blank" class="social-btn">LinkedIn</a>
+    </div>
+  </header>
 
-        <h2>Über mich</h2>
-        <p>Ich bin Dennis Maier, leidenschaftlicher <strong>Datenanalyst</strong> mit dem Anspruch, Informationen in wertvolle Erkenntnisse zu verwandeln.  
-        Mit einem scharfen Blick für Details, einem intuitiven Verständnis für Zusammenhänge und der Liebe zur Optimierung helfe ich Unternehmen dabei, ihre datengetriebenen Potenziale voll auszuschöpfen.</p>
+  <!-- 🎯 HERO SECTION – Einstieg -->
+  <section id="hero" data-aos="zoom-in">
+    <h2>Willkommen</h2>
+    <p>Wo Technologie und Natur eins werden.</p>
+    <button onclick="scrollToSection('about')">Starte deine Reise</button>
+  </section>
 
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/dennis-m-b6a6a6325/" target="_blank">🔗 LinkedIn Profil</a>
-            <a href="mailto:kneolekks@gmail.com">📩 Kontakt aufnehmen</a>
-        </div>
-    </section>
+  <!-- 👤 ÜBER MICH – Intro mit Bild -->
+  <section id="about" data-aos="fade-up">
+    <img src="assets/BewerbungsFotos.png" alt="Dennis Maier" id="profile-picture" />
+    <h2>Über mich</h2>
+    <p>
+      Ich bin Dennis Maier, leidenschaftlicher <strong>Datenanalyst</strong> mit dem Anspruch, Informationen in wertvolle Erkenntnisse zu verwandeln.  
+      Mit Blick für Muster, Gefühl für Systeme und einer Liebe zur Optimierung begleite ich Unternehmen ins datengetriebene Morgen.
+    </p>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/dennis-m-b6a6a6325/" target="_blank">🔗 LinkedIn Profil</a>
+      <a href="mailto:kneolekks@gmail.com">📩 Kontakt aufnehmen</a>
+    </div>
+  </section>
 
-    <!-- Netzwerk Visualisierung -->
-    <section id="network-visual">
-        <!-- Canvas für Netzwerk wird automatisch per JavaScript eingefügt -->
-    </section>
+  <!-- 🧠 NETZWERK VISUALISIERUNG -->
+  <section id="network-visual" data-aos="fade-up">
+    <!-- Dynamisches Netzwerk wird per JS (nature_network.js) generiert -->
+  </section>
 
-    <!-- Projekte Section -->
-    <section id="projects">
-        <h2>Meine Projekte</h2>
-        <div class="project-grid">
-            <div class="project-card">🌿 Projekt 1</div>
-            <div class="project-card">🔮 Projekt 2</div>
-            <div class="project-card">🚀 Projekt 3</div>
+  <!-- 🚀 PROJEKTE-BEREICH -->
+  <section id="projects" data-aos="fade-up">
+    <h2>Meine Projekte</h2>
+    <div class="project-grid">
 
-            <!-- 🔍 Neues Projekt: Deep Sea Corals -->
-            <div class="project-card">
-                <h3>🌊 Deep Sea Corals – Datenanalyse</h3>
-                <p>Analyse von Tiefsee-Korallen & Schwämmen auf Basis der NOAA-Datenbank.</p>
-                <ul>
-                    <li><a href="projects/deep-sea-corals/deep_sea_map.html" target="_blank">🌐 Interaktive Karte ansehen</a></li>
-                    <li><a href="projects/deep-sea-corals/DeepSea_Praesentation_DennisMaier_FINAL.pptx" target="_blank">📊 PowerPoint öffnen</a></li>
-                    <li><a href="projects/deep-sea-corals/deep_sea_corals.ipynb" target="_blank">📓 Notebook öffnen</a></li>
-                </ul>
-            </div>
-        </div>
-    </section>
+      <!-- Platzhalter-Projekte -->
+      <div class="project-card" data-aos="fade-right">🌿 Nachhaltigkeit & Daten</div>
+      <div class="project-card" data-aos="fade-up">🔮 AI & Mustererkennung</div>
+      <div class="project-card" data-aos="fade-left">🚀 Automatisierung & Energie</div>
 
-    <!-- App Suite Section -->
-    <section id="apps">
-        <h2>Dennis' App Suite</h2>
+      <!-- 🌊 Deep Sea Corals -->
+      <div class="project-card highlight-project" data-aos="zoom-in-up">
+        <h3>🌊 Deep Sea Corals – Datenanalyse</h3>
+        <p>Analyse von Tiefsee-Korallen & Schwämmen basierend auf NOAA-Daten.</p>
+        <ul>
+          <li><a href="projects/deep-sea-corals/deep_sea_map.html" target="_blank">🌐 Interaktive Karte</a></li>
+          <li><a href="projects/deep-sea-corals/DeepSea_Praesentation_DennisMaier_FINAL.pptx" target="_blank">📊 PowerPoint öffnen</a></li>
+          <li><a href="projects/deep-sea-corals/deep_sea_corals.ipynb" target="_blank">📓 Notebook öffnen</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-        <div id="terminal">
-            <!-- Mini-Terminal wird per JS gefüllt -->
-        </div>
+  <!-- ⚙️ APP SUITE -->
+  <section id="apps" data-aos="fade-up">
+    <h2>Dennis' App Suite</h2>
 
-        <div id="app-launcher">
-            <h3>Meine Apps</h3>
-            <div class="app-grid">
-                <div class="app-card">🌟 Flow</div>
-                <div class="app-card">📚 Seeds</div>
-                <div class="app-card">🔗 Connect</div>
-            </div>
-        </div>
-    </section>
+    <!-- 🎛 TERMINAL (dynamisch über terminal.js) -->
+    <div id="terminal">
+      <!-- Interaktiver CLI-Simulator -->
+    </div>
 
-    <!-- Kontakt Section -->
-    <section id="contact">
-        <h2>Kontakt</h2>
-        <p>Du willst mit mir in Kontakt treten? Schreib mir: 
-            <a href="mailto:kneolekks@gmail.com">kneolekks@gmail.com</a>
-        </p>
-    </section>
+    <!-- 🧩 App Cards -->
+    <div id="app-launcher">
+      <h3>Meine Apps</h3>
+      <div class="app-grid">
+        <div class="app-card">🌞 Flow</div>
+        <div class="app-card">📊 Seeds</div>
+        <div class="app-card">🔗 Connect</div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2025 Dennis Maier. Alle Rechte vorbehalten.</p>
-    </footer>
+  <!-- 📬 KONTAKT -->
+  <section id="contact" data-aos="fade-up">
+    <h2>Kontakt</h2>
+    <p>
+      Du willst mit mir in Kontakt treten?<br />
+      Schreib mir direkt:
+      <a href="mailto:kneolekks@gmail.com">kneolekks@gmail.com</a>
+    </p>
+  </section>
 
-    <!-- Scripts -->
-    <script src="scripts/main.js"></script>
-    <script src="scripts/animations.js"></script>
-    <script src="scripts/network_visuals/nature_network.js"></script>
-    <script src="scripts/terminal.js"></script>
+  <!-- 🔻 FUSSZEILE -->
+  <footer>
+    <p>© 2025 Dennis Maier. Alle Rechte vorbehalten.</p>
+  </footer>
+
+  <!-- ⚙️ DEINE JS-SKRIPTE -->
+  <script src="scripts/main.js"></script>
+  <script src="scripts/animations.js"></script>
+  <script src="scripts/network_visuals/nature_network.js"></script>
+  <script src="scripts/terminal.js"></script>
+
+  <!-- ✨ AOS Initialisierung -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init();</script>
+
+  <!-- 🌗 Dark Mode Toggle Logik -->
+  <script>
+    const toggle = document.getElementById("darkToggle");
+    toggle.addEventListener("change", () => {
+      document.body.classList.toggle("dark-mode");
+    });
+  </script>
+
+  <!-- 🔽 Scroll to Section (Hero Button Funktion) -->
+  <script>
+    function scrollToSection(id) {
+      const target = document.getElementById(id);
+      if (target) target.scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
+
 </body>
 </html>

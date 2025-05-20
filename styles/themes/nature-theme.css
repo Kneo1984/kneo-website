@@ -34,8 +34,9 @@ header {
 
 .dark-mode header {
   background: linear-gradient(to right, #1e1e1e, #2b2b2b);
-  color: #e0e0e0;
+  color: #ffffff;
 }
+
 
 /* ✨ NAVIGATION */
 nav.main-nav a {
@@ -284,6 +285,17 @@ body.dark-mode {
   background: linear-gradient(to right, #1e1e1e, #2b2b2b);
   color: #e0e0e0;
 }
+/* Sticky Header Effekt */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+/* Schatten beim Scroll */
+header.scrolled {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
 
 .dark-mode #hero,
 .dark-mode section {
@@ -408,4 +420,15 @@ body.dark-mode {
 
 .dark-mode button:hover {
   background-color: #388e3c;
+}
+/* 🌐 Sticky Header + sanfter Schatten beim Scroll */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  transition: box-shadow 0.3s ease;
+}
+
+header.scrolled {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }

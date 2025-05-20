@@ -1,5 +1,4 @@
-// 🧠 KNEOS TERMINAL – Kosmisch erweitert: Verlauf + Sound + Uhrzeit + Autoscroll
-
+// 🌌 KNEOS TERMINAL – Kosmisch perfektioniert: Verlauf + Sound + Uhrzeit + Autoscroll + History
 document.addEventListener("DOMContentLoaded", function () {
   const terminal = document.getElementById("terminal");
 
@@ -14,10 +13,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const output = document.getElementById("terminal-output");
   const input = document.getElementById("terminal-input");
 
-  // 🎵 Sound Feedback
-  const commandSound = new Audio("https://cdn.pixabay.com/download/audio/2022/03/15/audio_cce2b0d6e0.mp3?filename=click-124467.mp3");
+  // 🎵 Eingabesound laden
+  const commandSound = new Audio("https://cdn.jsdelivr.net/gh/Kneo1984/kneo-assets/sounds/beep.mp3");
 
-  // 🕒 Uhrzeit-Anzeige
+  // 🕒 Uhrzeit-Anzeige rechts unten
   const timeParagraph = document.createElement("p");
   timeParagraph.style.color = "lightblue";
   timeParagraph.style.fontSize = "0.9rem";
@@ -32,29 +31,56 @@ document.addEventListener("DOMContentLoaded", function () {
     const date = now.toLocaleDateString("de-DE");
     timeParagraph.textContent = `🕒 ${date} – ${time}`;
   }
-
   updateClock();
   setInterval(updateClock, 1000);
 
-  // 🎯 Eingabe verarbeiten
+  // 🔁 Eingabeverlauf speichern
+  let commandHistory = [];
+  let historyIndex = -1;
+
   input.addEventListener("keydown", function (e) {
     if (e.key === "Enter") {
       const command = input.value.trim().toLowerCase();
       if (command) {
         writeToTerminal(`> ${command}`, "white");
-        commandSound.play();
+        commandSound.currentTime = 0;
+        commandSound.play(); // ✅ Soundeffekt
         handleCommand(command);
+
+        commandHistory.push(command);
+        historyIndex = commandHistory.length;
+
         input.value = "";
       }
     }
+
+    // 🔼 Verlauf durchblättern
+    if (e.key === "ArrowUp") {
+      if (historyIndex > 0) {
+        historyIndex--;
+        input.value = commandHistory[historyIndex];
+      }
+      e.preventDefault();
+    }
+
+    if (e.key === "ArrowDown") {
+      if (historyIndex < commandHistory.length - 1) {
+        historyIndex++;
+        input.value = commandHistory[historyIndex];
+      } else {
+        historyIndex = commandHistory.length;
+        input.value = "";
+      }
+      e.preventDefault();
+    }
   });
 
-  // 🧠 Kommandoverarbeitung
+  // 🧠 Befehlslogik
   function handleCommand(cmd) {
     switch (cmd) {
       case "help":
         writeToTerminal(`
-<strong>Verfügbare Befehle:</strong><br>
+<strong>🌐 Verfügbare Befehle:</strong><br>
 <code>launch flow</code> – Öffnet die Flow-App<br>
 <code>open seeds</code> – Öffnet Seeds<br>
 <code>connect</code> – Verbindet mit Kontaktmodul<br>
@@ -72,17 +98,17 @@ document.addEventListener("DOMContentLoaded", function () {
         break;
       case "clear":
         output.innerHTML = "";
-        output.appendChild(timeParagraph); // Uhrzeit erhalten
+        output.appendChild(timeParagraph); // 🕒 Uhrzeit beibehalten
         break;
       default:
         writeToTerminal(`❓ Unbekannter Befehl: "${cmd}". Gib 'help' ein.`, "orange");
     }
 
-    // ✅ Autoscroll – jetzt korrekt eingebettet
+    // 🔄 Autoscroll
     terminal.scrollTop = terminal.scrollHeight;
   }
 
-  // 📤 Ausgabe-Helfer
+  // 📤 Ausgabehelfer
   function writeToTerminal(text, color = "lightgreen") {
     const response = document.createElement("p");
     response.style.color = color;

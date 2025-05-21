@@ -1,8 +1,9 @@
-// 🌌 KNEOS TERMINAL – Kosmisch perfektioniert: Verlauf + Sound + Uhrzeit + Autoscroll + History
-document.addEventListener("DOMContentLoaded", function () {
+// 🌌 KNEOS TERMINAL – Kosmisch vollendet: Verlauf + Sound + Zeit + Autoscroll
+document.addEventListener("DOMContentLoaded", () => {
   const terminal = document.getElementById("terminal");
 
-  // Terminal UI einfügen
+  if (!terminal) return; // Sicherheitscheck
+
   terminal.innerHTML = `
     <p style="color:lime;">✨ Willkommen im KNEOS Terminal ✨</p>
     <p style="color:cyan;">💡 Gib 'help' für Befehle ein.</p>
@@ -13,15 +14,16 @@ document.addEventListener("DOMContentLoaded", function () {
   const output = document.getElementById("terminal-output");
   const input = document.getElementById("terminal-input");
 
-  // 🎵 Eingabesound laden
-  const commandSound = new Audio("https://cdn.jsdelivr.net/gh/Kneo1984/kneo-assets/sounds/beep.mp3");
+  if (!output || !input) return; // Sicherheitscheck
 
-  // 🕒 Uhrzeit-Anzeige rechts unten
+  // 🎵 Kosmischer Klicksound
+  const beep = new Audio("https://cdn.jsdelivr.net/gh/Kneo1984/kneo-assets/sounds/beep.mp3");
+
+  // 🕒 Uhrzeit-Overlay
   const timeParagraph = document.createElement("p");
   timeParagraph.style.color = "lightblue";
-  timeParagraph.style.fontSize = "0.9rem";
-  timeParagraph.style.marginTop = "1rem";
   timeParagraph.style.textAlign = "right";
+  timeParagraph.style.fontSize = "0.9rem";
   timeParagraph.id = "terminal-time";
   output.appendChild(timeParagraph);
 
@@ -31,61 +33,35 @@ document.addEventListener("DOMContentLoaded", function () {
     const date = now.toLocaleDateString("de-DE");
     timeParagraph.textContent = `🕒 ${date} – ${time}`;
   }
+
   updateClock();
   setInterval(updateClock, 1000);
 
-  // 🔁 Eingabeverlauf speichern
-  let commandHistory = [];
-  let historyIndex = -1;
-
-  input.addEventListener("keydown", function (e) {
+  // 🧠 Kommando-Eingabe
+  input.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
-      const command = input.value.trim().toLowerCase();
-      if (command) {
-        writeToTerminal(`> ${command}`, "white");
-        commandSound.currentTime = 0;
-        commandSound.play(); // ✅ Soundeffekt
-        handleCommand(command);
-
-        commandHistory.push(command);
-        historyIndex = commandHistory.length;
-
+      const cmd = input.value.trim().toLowerCase();
+      if (cmd) {
+        beep.currentTime = 0;
+        beep.play().catch(() => {}); // Fehlerfreie Soundauslösung
+        writeToTerminal(`> ${cmd}`, "white");
+        handleCommand(cmd);
         input.value = "";
       }
-    }
-
-    // 🔼 Verlauf durchblättern
-    if (e.key === "ArrowUp") {
-      if (historyIndex > 0) {
-        historyIndex--;
-        input.value = commandHistory[historyIndex];
-      }
-      e.preventDefault();
-    }
-
-    if (e.key === "ArrowDown") {
-      if (historyIndex < commandHistory.length - 1) {
-        historyIndex++;
-        input.value = commandHistory[historyIndex];
-      } else {
-        historyIndex = commandHistory.length;
-        input.value = "";
-      }
-      e.preventDefault();
     }
   });
 
-  // 🧠 Befehlslogik
+  // 🔮 Befehlserkennung
   function handleCommand(cmd) {
     switch (cmd) {
       case "help":
         writeToTerminal(`
-<strong>🌐 Verfügbare Befehle:</strong><br>
+<strong>Verfügbare Befehle:</strong><br>
 <code>launch flow</code> – Öffnet die Flow-App<br>
 <code>open seeds</code> – Öffnet Seeds<br>
 <code>connect</code> – Verbindet mit Kontaktmodul<br>
 <code>clear</code> – Terminal leeren
-`, "cyan");
+        `, "cyan");
         break;
       case "launch flow":
         writeToTerminal("🚀 Flow-App gestartet... (Simulation)", "lightgreen");
@@ -98,21 +74,21 @@ document.addEventListener("DOMContentLoaded", function () {
         break;
       case "clear":
         output.innerHTML = "";
-        output.appendChild(timeParagraph); // 🕒 Uhrzeit beibehalten
+        output.appendChild(timeParagraph); // Uhrzeit erhalten
         break;
       default:
         writeToTerminal(`❓ Unbekannter Befehl: "${cmd}". Gib 'help' ein.`, "orange");
     }
 
-    // 🔄 Autoscroll
+    // 🔁 Autoscroll
     terminal.scrollTop = terminal.scrollHeight;
   }
 
-  // 📤 Ausgabehelfer
+  // 📤 Terminalausgabe
   function writeToTerminal(text, color = "lightgreen") {
-    const response = document.createElement("p");
-    response.style.color = color;
-    response.innerHTML = text;
-    output.appendChild(response);
+    const p = document.createElement("p");
+    p.style.color = color;
+    p.innerHTML = text;
+    output.appendChild(p);
   }
 });

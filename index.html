@@ -5,54 +5,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dennis Maier Website – Data Analyst | Living Systems</title>
 
-  <!-- Google Fonts -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 
-  <!-- AOS Scroll Animation CSS -->
+  <!-- AOS Animation -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
-  <!-- Custom Styles -->
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="styles/base/base.css" />
-  <link rel="stylesheet" href="styles/themes/nature-theme.css" />
+  <link rel="stylesheet" href="styles/themes/cosmic-theme.css" /> <!-- ✅ Cosmic Mode aktiviert -->
 </head>
 
 <body>
-  <!-- 🌗 Dark Mode Toggle -->
+  <!-- Dark Mode Toggle -->
   <div class="toggle-container">
     🌙 <label class="switch">
       <input type="checkbox" id="darkToggle" />
       <span class="slider round"></span>
     </label>
   </div>
-<div id="cosmic-overlay"></div>
 
-  <!-- 🔰 HEADER -->
-  <header id="site-header" data-aos="fade-down">
-    <div class="header-left">
-      <h1>Dennis Maier</h1>
-      <p>Data Analyst – Living Systems & Future Thinking</p>
-    </div>
+  <!-- Kosmischer Sternenlayer -->
+  <div id="cosmic-overlay"></div>
+
+  <!-- Header -->
+  <header>
+    <h1>Dennis Maier</h1>
+    <p>Data Analyst – Living Systems & Future Thinking</p>
     <nav class="main-nav">
       <a href="#about">Über mich</a>
       <a href="#projects">Projekte</a>
       <a href="#apps">App Suite</a>
       <a href="#contact">Kontakt</a>
     </nav>
-    <div class="social-header-links">
-      <a href="https://github.com/Kneo1984/kneo-website" target="_blank" class="social-btn">GitHub</a>
-      <a href="https://www.linkedin.com/in/dennis-m-b6a6a6325/" target="_blank" class="social-btn">LinkedIn</a>
-    </div>
   </header>
 
-  <!-- 🎯 HERO SECTION mit Particles Background -->
-  <section id="hero" data-aos="zoom-in">
-    <div id="particles-js"></div> <!-- 🌌 Sternenstaub-Hintergrund -->
-    <h2>Willkommen</h2>
-    <p>Wo Technologie und Natur eins werden.</p>
-    <button onclick="scrollToSection('about')">Starte deine Reise</button>
+  <!-- Hero mit Sternen & Erde -->
+  <section id="hero">
+    <canvas id="star-canvas"></canvas>
+    <div class="hero-content">
+      <h1>Willkommen</h1>
+      <p>Wo Technologie und Kosmos eins werden</p>
+      <div id="earth"></div>
+      <button onclick="scrollToSection('about')">Starte deine Reise</button>
+    </div>
   </section>
 
-  <!-- 👤 ÜBER MICH -->
+  <!-- Über mich -->
   <section id="about" data-aos="fade-up">
     <img src="assets/BewerbungsFotos.png" alt="Dennis Maier" id="profile-picture" />
     <h2>Über mich</h2>
@@ -65,19 +64,16 @@
     </div>
   </section>
 
-  <!-- 🕸️ NETZWERK VISUALISIERUNG -->
-  <section id="network-visual" data-aos="fade-up">
-    <!-- Dynamisches Netzwerk durch JS -->
-  </section>
+  <!-- Netzwerk -->
+  <section id="network-visual" data-aos="fade-up"></section>
 
-  <!-- 📂 PROJEKTE -->
+  <!-- Projekte -->
   <section id="projects" data-aos="fade-up">
     <h2>Meine Projekte</h2>
     <div class="project-grid">
       <div class="project-card" data-aos="fade-right">🌿 Nachhaltigkeit & Daten</div>
       <div class="project-card" data-aos="fade-up">🔮 AI & Mustererkennung</div>
       <div class="project-card" data-aos="fade-left">🚀 Automatisierung & Energie</div>
-
       <div class="project-card highlight-project" data-aos="zoom-in-up">
         <h3>🌊 Deep Sea Corals – Datenanalyse</h3>
         <p>Analyse von Tiefsee-Korallen & Schwämmen auf NOAA-Basis.</p>
@@ -90,7 +86,7 @@
     </div>
   </section>
 
-  <!-- ⚙️ APP SUITE -->
+  <!-- App Suite -->
   <section id="apps" data-aos="fade-up">
     <h2>Dennis' App Suite</h2>
     <div id="terminal"></div>
@@ -104,88 +100,113 @@
     </div>
   </section>
 
-  <!-- 📬 KONTAKT -->
+  <!-- Kontakt -->
   <section id="contact" data-aos="fade-up">
     <h2>Kontakt</h2>
-    <p>Du willst mit mir in Kontakt treten? Schreib mir:
-      <a href="mailto:kneolekks@gmail.com">kneolekks@gmail.com</a>
-    </p>
+    <p>Du willst mit mir in Kontakt treten? Schreib mir: <a href="mailto:kneolekks@gmail.com">kneolekks@gmail.com</a></p>
   </section>
 
-  <!-- 🔻 FOOTER -->
+  <!-- Footer -->
   <footer>
     <p>© 2025 Dennis Maier. Alle Rechte vorbehalten.</p>
   </footer>
 
-  <!-- 📜 SCRIPTS -->
+  <!-- Scripts -->
   <script src="scripts/main.js"></script>
   <script src="scripts/animations.js"></script>
   <script src="scripts/network_visuals/nature_network.js"></script>
   <script src="scripts/terminal.js"></script>
 
-  <!-- ✨ AOS aktivieren -->
+  <!-- AOS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>AOS.init();</script>
 
- <!-- 🌗 Dark Mode Toggle Logik (Fix) -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const toggle = document.getElementById("darkToggle");
-
-    // Zustand merken
-    if (localStorage.getItem("theme") === "dark") {
-      document.body.classList.add("dark-mode");
-      toggle.checked = true;
-    }
-
-    toggle.addEventListener("change", function () {
-      if (toggle.checked) {
-        document.body.classList.add("dark-mode");
-        localStorage.setItem("theme", "dark");
-      } else {
-        document.body.classList.remove("dark-mode");
-        localStorage.setItem("theme", "light");
-      }
-    });
-  });
-</script>
-
-  <!-- 🌌 Particles.js Konfiguration -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <!-- Dark Mode Logik -->
   <script>
-    particlesJS("particles-js", {
-      particles: {
-        number: { value: 60, density: { enable: true, value_area: 800 } },
-        color: { value: "#4CAF50" },
-        shape: { type: "circle" },
-        opacity: { value: 0.2 },
-        size: { value: 3 },
-        line_linked: { enable: false },
-        move: { enable: true, speed: 0.6 }
-      },
-      interactivity: {
-        detect_on: "canvas",
-        events: {
-          onhover: { enable: true, mode: "repulse" },
-          onclick: { enable: true, mode: "push" }
-        },
-        modes: {
-          repulse: { distance: 100 },
-          push: { particles_nb: 4 }
-        }
-      },
-      retina_detect: true
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggle = document.getElementById("darkToggle");
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+        toggle.checked = true;
+      }
+      toggle.addEventListener("change", () => {
+        document.body.classList.toggle("dark-mode");
+        localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
+      });
     });
   </script>
 
- <!-- 🔽 Scroll zu Section -->
-<script>
-  function scrollToSection(id) {
-    const target = document.getElementById(id);
-    if (target) target.scrollIntoView({ behavior: "smooth" });
-  }
-</script> <!-- ✅ FEHLTE! -->
+  <!-- Sterne-Canvas -->
+  <script>
+    const canvas = document.getElementById('star-canvas');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
 
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    function createStars() {
+      stars = [];
+      for (let i = 0; i < 120; i++) {
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: Math.random() * 1.5,
+          alpha: Math.random(),
+          speed: 0.002 + Math.random() * 0.01
+        });
+      }
+    }
+
+    function drawStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach(star => {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
+        ctx.fill();
+        star.alpha += star.speed;
+        if (star.alpha > 1 || star.alpha < 0) star.speed *= -1;
+      });
+      requestAnimationFrame(drawStars);
+    }
+
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      createStars();
+    });
+
+    resizeCanvas();
+    createStars();
+    drawStars();
+  </script>
+
+  <!-- Scroll Funktion -->
+  <script>
+    function scrollToSection(id) {
+      const target = document.getElementById(id);
+      if (target) target.scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
+
+  <!-- Erde Animation -->
+  <style>
+    @keyframes rotateEarth {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    #earth {
+      width: 150px;
+      height: 150px;
+      margin: 2rem auto;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg') no-repeat center/cover;
+      border-radius: 50%;
+      animation: rotateEarth 20s linear infinite;
+      box-shadow: 0 0 30px rgba(0,255,255,0.3);
+    }
+  </style>
 </body>
 </html>
-

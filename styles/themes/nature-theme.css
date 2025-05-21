@@ -1,9 +1,9 @@
-/* ===================================
-   Dennis Maier – Nature Theme (v2)
-   Light & Dark Mode, Smooth Transitions
-   =================================== */
+/* ===========================================
+   Dennis Maier – Cosmic Theme (Final Release)
+   Vollständig galaktisch | 100% dunkle Eleganz
+=========================================== */
 
-/* 🌍 GLOBAL SETUP */
+/* 🌍 RESET & GLOBAL */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -12,221 +12,172 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #f5fdf8;
-  color: #222;
-  transition: background-color 0.4s ease, color 0.4s ease;
+  background: linear-gradient(180deg, #0d0d1a 0%, #1b0033 100%);
+  color: #e0e0e0;
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
   line-height: 1.6;
+  transition: background 0.5s ease, color 0.5s ease;
 }
 
-body.dark-mode {
-  background-color: #121212;
-  color: #f0f0f0;
+/* 🌌 Kosmisches Sternenrauschen */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 3px 3px, 5px 5px;
+  animation: starsMove 120s linear infinite;
 }
 
-/* ✨ HEADER */
+@keyframes starsMove {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: 400px 800px, 600px 1200px; }
+}
+
+/* 🌙 Header */
 header {
-  background: linear-gradient(to right, #a8e063, #56ab2f);
-  color: white;
+  background: transparent;
+  color: #ffffff;
+  position: sticky;
+  top: 0;
   padding: 2rem;
   text-align: center;
-  transition: background 0.5s ease;
+  z-index: 10;
+  transition: background 0.4s ease, box-shadow 0.3s ease;
 }
 
-.dark-mode header {
-  background: linear-gradient(to right, #1e1e1e, #2b2b2b);
-  color: #ffffff;
+header.sticky-shadow {
+  background-color: rgba(0, 0, 0, 0.85);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.08);
 }
 
-
-/* ✨ NAVIGATION */
+/* 🔗 Navigation */
 nav.main-nav a {
-  color: white;
-  text-decoration: none;
+  color: #ffffff;
   margin: 0 1rem;
   font-weight: 600;
+  text-decoration: none;
   transition: color 0.3s ease;
 }
 
 nav.main-nav a:hover {
-  color: #f0f0f0;
+  color: #00fff7;
 }
 
-.dark-mode nav.main-nav a {
-  color: #b5f2c2;
-}
-
-/* ✨ HERO SECTION */
+/* 🪐 Hero */
 #hero {
-  padding: 5rem 2rem;
+  background: transparent;
+  color: #ffffff;
+  padding: 6rem 2rem;
   text-align: center;
-  background-color: #d6f5e3;
-  transition: background-color 0.4s ease;
+  position: relative;
+  z-index: 1;
 }
 
-.dark-mode #hero {
-  background-color: #1a1a1a;
+h1, h2, h3, h4 {
+  color: #ffffff;
 }
 
-/* ✨ BUTTON STYLE */
+p, li, a, span {
+  color: #e0e0e0;
+}
+
+/* 🚀 Button */
 button {
-  background-color: #4CAF50;
-  color: white;
+  background-color: #00ffc8;
+  color: #000;
   padding: 0.8rem 2rem;
   border: none;
-  border-radius: 30px;
+  border-radius: 50px;
   font-size: 1rem;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.2s ease;
-  margin-top: 1rem;
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #00bfa5;
   transform: scale(1.05);
 }
 
-/* ✨ ÜBER MICH BILD */
-#profile-picture {
-  max-width: 200px;
-  border-radius: 50%;
-  margin-bottom: 1rem;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-}
-
-/* ✨ SECTION STYLES */
-section {
-  padding: 4rem 2rem;
-  max-width: 1000px;
-  margin: auto;
-}
-
-/* ✨ PROJECT GRID */
-.project-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
-}
-
-.project-card {
-  background-color: white;
-  padding: 1.5rem;
+/* 🧪 Projekt- & App-Karten */
+.project-card, .app-card {
+  background-color: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  flex: 1 1 300px;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.project-card:hover {
-  transform: translateY(-6px);
-}
-
-.dark-mode .project-card {
-  background-color: #222;
-  color: #ddd;
-}
-
-/* ✨ HIGHLIGHT PROJECT */
-.highlight-project {
-  border: 2px solid #4CAF50;
-}
-
-.dark-mode .highlight-project {
-  border-color: #77e18d;
-}
-
-/* ✨ SOCIAL & LINKS */
-.social-links a,
-.social-header-links a {
-  display: inline-block;
-  margin: 0.5rem;
-  text-decoration: none;
-  font-weight: 600;
-  color: #4CAF50;
-  transition: color 0.3s ease;
-}
-
-.dark-mode .social-links a,
-.dark-mode .social-header-links a {
-  color: #a8f4b3;
-}
-
-.social-header-links {
-  margin-top: 1rem;
-}
-
-/* ✨ TERMINAL STYLE */
-#terminal {
-  background-color: #000;
-  color: #0f0;
-  font-family: 'Courier New', Courier, monospace;
   padding: 1.5rem;
-  border-radius: 10px;
-  margin: 2rem 0;
-  min-height: 200px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.dark-mode #terminal {
-  background-color: #111;
-  color: #0f0;
+.project-card:hover, .app-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.1);
 }
 
-/* ✨ APP GRID & CARDS */
-.app-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
-  margin-top: 2rem;
+/* 🧠 Highlight-Projekt */
+.highlight-project {
+  border: 2px solid #a8f4b3;
+  background-color: #1b1b1b;
 }
 
-/* 🌟 Animierte App Cards */
-.app-card {
-  background-color: #e2fbe0;
-  padding: 1rem 2rem;
-  border-radius: 15px;
-  font-weight: bold;
-  font-size: 1.1rem;
-  color: #1c3b1f;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-  cursor: pointer;
-  min-width: 140px;
-  text-align: center;
+/* 📟 Terminal */
+#terminal {
+  background-color: #000 !important;
+  color: #0f0 !important;
+  font-family: 'Courier New', Courier, monospace;
 }
 
-.app-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  background-color: #d1f6d1;
+/* 🌒 Dark Mode (Optional, falls benötigt) */
+body.dark-mode {
+  background: linear-gradient(180deg, #000010 0%, #0b0b20 100%);
+  color: #e8f5e9;
 }
 
-.dark-mode .app-card {
-  background-color: #2e2e2e;
+.dark-mode h1, .dark-mode h2, .dark-mode h3 {
   color: #a8f4b3;
+}
+
+.dark-mode a {
+  color: #81eeb8;
+}
+
+.dark-mode a:hover {
+  color: #ffffff;
+}
+
+.dark-mode .project-card,
+.dark-mode .app-card {
+  background-color: #1e1e1e;
+  color: #e0f2e9;
+  border-color: #77e18d;
   box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
 }
 
+.dark-mode .project-card:hover,
 .dark-mode .app-card:hover {
-  background-color: #3a3a3a;
+  background-color: #262626;
   box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
 }
 
-/* ✨ FOOTER */
+/* 💬 Footer */
 footer {
-  background-color: #c1e1c1;
+  background-color: #000;
+  color: #aaa;
   text-align: center;
   padding: 2rem;
   font-size: 0.9rem;
-  color: #333;
+  z-index: 2;
 }
 
-.dark-mode footer {
-  background-color: #181818;
-  color: #bbb;
-}
-
-/* ✨ DARK MODE TOGGLE SWITCH */
+/* 🌗 Dark Mode Toggle */
 .toggle-container {
   position: absolute;
   top: 10px;
@@ -250,8 +201,10 @@ footer {
 .slider {
   position: absolute;
   cursor: pointer;
-  top: 0; left: 0;
-  right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background-color: #ccc;
   transition: .4s;
   border-radius: 24px;
@@ -260,8 +213,10 @@ footer {
 .slider:before {
   position: absolute;
   content: "";
-  height: 18px; width: 18px;
-  left: 4px; bottom: 3px;
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 3px;
   background-color: white;
   transition: .4s;
   border-radius: 50%;
@@ -273,208 +228,4 @@ input:checked + .slider {
 
 input:checked + .slider:before {
   transform: translateX(26px);
-}
-/* 🌒 Dark Mode Fix – kräftiger & vollständig */
-
-body.dark-mode {
-  background-color: #121212;
-  color: #f0f0f0;
-}
-
-.dark-mode header {
-  background: linear-gradient(to right, #1e1e1e, #2b2b2b);
-  color: #e0e0e0;
-}
-/* Sticky Header Effekt */
-header {
-  position: sticky;
-  top: 0;
-  z-index: 999;
-}
-
-/* Schatten beim Scroll */
-header.scrolled {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.dark-mode #hero,
-.dark-mode section {
-  background-color: #1a1a1a;
-  color: #eeeeee;
-}
-
-.dark-mode .project-card,
-.dark-mode .app-card {
-  background-color: #222;
-  color: #ddd;
-  border-color: #4CAF50;
-}
-
-.dark-mode footer {
-  background-color: #181818;
-  color: #bbb;
-}
-
-.dark-mode nav.main-nav a,
-.dark-mode .social-links a,
-.dark-mode .social-header-links a {
-  color: #a8f4b3;
-}
-.dark-mode body {
-  background-color: #121212;
-  color: #f0f0f0;
-}
-
-.dark-mode section {
-  background-color: #181818;
-  color: #e0e0e0;
-}
-
-.dark-mode header {
-  background: linear-gradient(to right, #2c3e50, #1a1a1a);
-}
-
-.dark-mode .project-card,
-.dark-mode .app-card {
-  background-color: #222;
-  color: #a8f4b3;
-}
-
-.dark-mode a {
-  color: #81eeb8;
-}
-
-.dark-mode footer {
-  background-color: #121212;
-  color: #ccc;
-}
-/* 🌒 Dark Mode – optimierte Kontraste & Farben */
-
-body.dark-mode {
-  background-color: #121212;
-  color: #e8f5e9;
-}
-
-/* Headlines */
-.dark-mode h1,
-.dark-mode h2,
-.dark-mode h3,
-.dark-mode h4 {
-  color: #a8f4b3;
-}
-
-/* Fließtext, Listen & Links */
-.dark-mode p,
-.dark-mode li,
-.dark-mode a {
-  color: #e0e0e0;
-}
-
-.dark-mode a:hover {
-  color: #ffffff;
-}
-
-/* Navigation */
-.dark-mode nav.main-nav a {
-  color: #a8f4b3;
-}
-
-/* Projektkarten */
-.dark-mode .project-card,
-.dark-mode .app-card {
-  background-color: #1e1e1e;
-  color: #e0f2e9;
-  border-color: #77e18d;
-  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
-}
-
-.dark-mode .project-card:hover,
-.dark-mode .app-card:hover {
-  background-color: #262626;
-  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
-}
-
-/* Highlight-Projekt */
-.dark-mode .highlight-project {
-  border: 2px solid #a8f4b3;
-  background-color: #1b1b1b;
-}
-
-/* Footer */
-.dark-mode footer {
-  background-color: #181818;
-  color: #cccccc;
-}
-
-/* Terminal */
-.dark-mode #terminal {
-  background-color: #1e1e1e;
-  color: #a8f4b3;
-}
-
-/* Buttons */
-.dark-mode button {
-  background-color: #2e7d32;
-  color: #ffffff;
-}
-
-.dark-mode button:hover {
-  background-color: #388e3c;
-}
-/* 🌐 Sticky Header + sanfter Schatten beim Scroll */
-header {
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  transition: box-shadow 0.3s ease;
-}
-
-header.scrolled {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-/* 🧠 Sticky Header mit sanftem Schatten */
-header.sticky-shadow {
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-  position: sticky;
-  top: 0;
-  z-index: 999;
-}
-/* 🌌 Kosmischer Seitenhintergrund */
-body {
-  background: linear-gradient(180deg, #0d0d1a 0%, #1b0033 100%);
-  background-attachment: fixed;
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: #e0e0e0;
-  transition: background 0.5s ease, color 0.5s ease;
-}
-
-.dark-mode {
-  background: linear-gradient(180deg, #000010 0%, #0b0b20 100%);
-  color: #f0f0f0;
-}
-
-#cosmic-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 0;
-  background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.02) 0%, transparent 80%),
-              radial-gradient(circle at 80% 60%, rgba(255,255,255,0.015) 0%, transparent 70%),
-              radial-gradient(circle at 50% 100%, rgba(255,255,255,0.01) 0%, transparent 90%);
-  animation: starsShift 60s linear infinite;
-}
-
-@keyframes starsShift {
-  0% { background-position: 0 0, 0 0, 0 0; }
-  100% { background-position: 100px 200px, 200px 400px, 300px 600px; }
-}
-
-/* Terminal bleibt unverändert */
-#terminal {
-  background-color: #000 !important;
-  color: #0f0 !important;
 }

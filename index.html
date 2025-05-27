@@ -3,27 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dennis Maier Website – Datenanalytiker | Living Systems</title>
+  <title>Dennis Maier Website – Data Analyst | Living Systems</title>
 
-  <!-- 🌐 SEO & Social Media Meta-Tags -->
-  <meta name="description" content="Erfahre mehr über meine Projekte in Datenanalyse, Nachhaltigkeit & KI – mit interaktiven Tools und Deep Sea Insights.">
-  <meta name="author" content="Dennis Maier" />
-  <meta name="keywords" content="Data Science, Deep Sea Corals, Nachhaltigkeit, KI, Automation, Python, Visualisierung, Dennis Maier" />
-  <meta name="robots" content="index, follow" />
-  <meta property="og:type" content="article" />
-  <meta property="og:title" content="Dennis Maier Website – Datenanalytiker | Living Systems" />
-  <meta property="og:description" content="Datenanalytik trifft Zukunftsdenken – entdecke meine Projekte & App Suite." />
-  <meta property="og:image" content="https://kneo1984.github.io/kneo-website/assets/BewerbungsFotos.png" />
-  <meta property="og:url" content="https://kneo1984.github.io/kneo-website/" />
-  <meta property="article:author" content="Dennis Maier" />
-  <link rel="canonical" href="https://kneo1984.github.io/kneo-website/" />
-  <link rel="sitemap" type="application/xml" title="Sitemap" href="sitemap.xml" />
-
-  <!-- Fonts & Styles -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- AOS Animation -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="styles/base/base.css" />
-  <link rel="stylesheet" href="styles/themes/cosmic-theme.css" />
+  <link rel="stylesheet" href="styles/themes/cosmic-theme.css" /> <!-- ✅ Cosmic Mode aktiviert -->
 </head>
 
 <body>
@@ -35,8 +25,10 @@
     </label>
   </div>
 
+  <!-- Kosmischer Sternenlayer -->
   <div id="cosmic-overlay"></div>
 
+  <!-- Header -->
   <header>
     <h1>Dennis Maier</h1>
     <p>Data Analyst – Living Systems & Future Thinking</p>
@@ -48,6 +40,7 @@
     </nav>
   </header>
 
+  <!-- Hero mit Sternen & Erde -->
   <section id="hero">
     <canvas id="star-canvas"></canvas>
     <div class="hero-content">
@@ -58,6 +51,7 @@
     </div>
   </section>
 
+  <!-- Über mich -->
   <section id="about" data-aos="fade-up">
     <img src="assets/BewerbungsFotos.png" alt="Dennis Maier" id="profile-picture" />
     <h2>Über mich</h2>
@@ -70,6 +64,10 @@
     </div>
   </section>
 
+  <!-- Netzwerk -->
+  <section id="network-visual" data-aos="fade-up"></section>
+
+  <!-- Projekte -->
   <section id="projects" data-aos="fade-up">
     <h2>Meine Projekte</h2>
     <div class="project-grid">
@@ -80,44 +78,35 @@
         <h3>🌊 Deep Sea Corals – Datenanalyse</h3>
         <p>Analyse von Tiefsee-Korallen & Schwämmen auf NOAA-Basis.</p>
         <ul>
-          <li><a href="deep_sea_map.html" target="_blank">🌐 Interaktive Karte</a></li>
-          <li>
-            <a href="projects/deep-sea-corals/DeepSea_Praesentation_DennisMaier_FINAL.pptx" download
-              style="padding: 8px 16px; background: #0066cc; color: white; text-decoration: none; border-radius: 4px; display: inline-block; margin: 0.5rem 0;">
-              📥 PowerPoint herunterladen (aktuell)
-            </a>
-          </li>
-          <li>
-            <a href="https://deepseacoraldata.noaa.gov/data" target="_blank">
-              📂 NOAA-Datenquelle anzeigen
-            </a>
-          </li>
-          <li>
-            <a href="https://nbviewer.org/github/Kneo1984/deep-sea-corals/blob/main/%F0%9F%8C%8A%20Deep_Sea_Corals.ipynb" target="_blank">
-              🧠 Jupyter Notebook ansehen
-            </a>
-          </li>
+          <li><a href="projects/deep-sea-corals/deep_sea_map.html" target="_blank">🌐 Interaktive Karte</a></li>
+          <li><a href="projects/deep-sea-corals/DeepSea_Praesentation_DennisMaier_FINAL.pptx" target="_blank">📊 PowerPoint öffnen</a></li>
+          <li><a href="projects/deep-sea-corals/deep_sea_corals.ipynb" target="_blank">📓 Notebook öffnen</a></li>
         </ul>
       </div>
     </div>
   </section>
 
+  <!-- App Suite -->
   <section id="apps" data-aos="fade-up">
     <h2>Dennis' App Suite</h2>
+    <div id="terminal"></div>
     <div id="app-launcher">
+      <h3>Meine Apps</h3>
       <div class="app-grid">
-        <a href="apps/flow/index.html" class="app-card" data-aos="fade-up">🌞 Flow</a>
-        <a href="apps/seeds/index.html" class="app-card" data-aos="fade-up">📚 Seeds</a>
-        <a href="apps/connect/index.html" class="app-card" data-aos="fade-up">🔗 Connect</a>
+        <div class="app-card" data-aos="fade-up">🌞 Flow</div>
+        <div class="app-card" data-aos="fade-up">📚 Seeds</div>
+        <div class="app-card" data-aos="fade-up">🔗 Connect</div>
       </div>
     </div>
   </section>
 
+  <!-- Kontakt -->
   <section id="contact" data-aos="fade-up">
     <h2>Kontakt</h2>
     <p>Du willst mit mir in Kontakt treten? Schreib mir: <a href="mailto:kneolekks@gmail.com">kneolekks@gmail.com</a></p>
   </section>
 
+  <!-- Footer -->
   <footer>
     <p>© 2025 Dennis Maier. Alle Rechte vorbehalten.</p>
   </footer>
@@ -127,9 +116,12 @@
   <script src="scripts/animations.js"></script>
   <script src="scripts/network_visuals/nature_network.js"></script>
   <script src="scripts/terminal.js"></script>
+
+  <!-- AOS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>AOS.init();</script>
 
+  <!-- Dark Mode Logik -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const toggle = document.getElementById("darkToggle");
@@ -142,14 +134,9 @@
         localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
       });
     });
-
-    function scrollToSection(id) {
-      const target = document.getElementById(id);
-      if (target) target.scrollIntoView({ behavior: "smooth" });
-    }
   </script>
 
-  <!-- Sterne + Erde -->
+  <!-- Sterne-Canvas -->
   <script>
     const canvas = document.getElementById('star-canvas');
     const ctx = canvas.getContext('2d');
@@ -196,6 +183,15 @@
     drawStars();
   </script>
 
+  <!-- Scroll Funktion -->
+  <script>
+    function scrollToSection(id) {
+      const target = document.getElementById(id);
+      if (target) target.scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
+
+  <!-- Erde Animation -->
   <style>
     @keyframes rotateEarth {
       0% { transform: rotate(0deg); }

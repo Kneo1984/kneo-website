@@ -1,19 +1,25 @@
-
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dennis Maier Website – Data Analyst | Living Systems</title>
+  <title>Dennis Maier Website – Datenanalytiker | Living Systems</title>
 
-  <!-- ✅ Open Graph Meta-Tags für LinkedIn und Social Media -->
-  <meta property="og:title" content="Dennis Maier Website – Datenanalytiker | Living Systems">
-  <meta property="og:description" content="Erfahre mehr über meine Projekte in der Datenanalyse, Nachhaltigkeit und KI – mit visuellen Tools und Deep Sea Insights.">
-  <meta property="og:image" content="https://kneo1984.github.io/kneo-website/assets/BewerbungsFotos.png">
-  <meta property="og:url" content="https://kneo1984.github.io/kneo-website">
-  <meta property="og:type" content="website">
+  <!-- 🌐 SEO & Social Media Meta-Tags -->
+  <meta name="description" content="Erfahre mehr über meine Projekte in Datenanalyse, Nachhaltigkeit & KI – mit interaktiven Tools und Deep Sea Insights.">
+  <meta name="author" content="Dennis Maier" />
+  <meta name="keywords" content="Data Science, Deep Sea Corals, Nachhaltigkeit, KI, Automation, Python, Visualisierung, Dennis Maier" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Dennis Maier Website – Datenanalytiker | Living Systems" />
+  <meta property="og:description" content="Datenanalytik trifft Zukunftsdenken – entdecke meine Projekte & App Suite." />
+  <meta property="og:image" content="https://kneo1984.github.io/kneo-website/assets/BewerbungsFotos.png" />
+  <meta property="og:url" content="https://kneo1984.github.io/kneo-website/" />
+  <meta property="article:author" content="Dennis Maier" />
+  <link rel="canonical" href="https://kneo1984.github.io/kneo-website/" />
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="sitemap.xml" />
 
+  <!-- Fonts & Styles -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <link rel="stylesheet" href="styles/base/base.css" />
@@ -21,6 +27,7 @@
 </head>
 
 <body>
+  <!-- Dark Mode Toggle -->
   <div class="toggle-container">
     🌙 <label class="switch">
       <input type="checkbox" id="darkToggle" />
@@ -63,8 +70,6 @@
     </div>
   </section>
 
-  <section id="network-visual" data-aos="fade-up"></section>
-
   <section id="projects" data-aos="fade-up">
     <h2>Meine Projekte</h2>
     <div class="project-grid">
@@ -82,7 +87,16 @@
               📥 PowerPoint herunterladen (aktuell)
             </a>
           </li>
-          <li><a href="deep_sea_corals.csv" target="_blank" style="opacity: 0.4; pointer-events: none;">📁 CSV (nicht öffentlich)</a></li>
+          <li>
+            <a href="https://deepseacoraldata.noaa.gov/data" target="_blank">
+              📂 NOAA-Datenquelle anzeigen
+            </a>
+          </li>
+          <li>
+            <a href="https://nbviewer.org/github/Kneo1984/deep-sea-corals/blob/main/%F0%9F%8C%8A%20Deep_Sea_Corals.ipynb" target="_blank">
+              🧠 Jupyter Notebook ansehen
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -90,13 +104,11 @@
 
   <section id="apps" data-aos="fade-up">
     <h2>Dennis' App Suite</h2>
-    <div id="terminal"></div>
     <div id="app-launcher">
-      <h3>Meine Apps</h3>
       <div class="app-grid">
-        <div class="app-card" data-aos="fade-up">🌞 Flow</div>
-        <div class="app-card" data-aos="fade-up">📚 Seeds</div>
-        <div class="app-card" data-aos="fade-up">🔗 Connect</div>
+        <a href="apps/flow/index.html" class="app-card" data-aos="fade-up">🌞 Flow</a>
+        <a href="apps/seeds/index.html" class="app-card" data-aos="fade-up">📚 Seeds</a>
+        <a href="apps/connect/index.html" class="app-card" data-aos="fade-up">🔗 Connect</a>
       </div>
     </div>
   </section>
@@ -110,6 +122,7 @@
     <p>© 2025 Dennis Maier. Alle Rechte vorbehalten.</p>
   </footer>
 
+  <!-- Scripts -->
   <script src="scripts/main.js"></script>
   <script src="scripts/animations.js"></script>
   <script src="scripts/network_visuals/nature_network.js"></script>
@@ -136,6 +149,7 @@
     }
   </script>
 
+  <!-- Sterne + Erde -->
   <script>
     const canvas = document.getElementById('star-canvas');
     const ctx = canvas.getContext('2d');

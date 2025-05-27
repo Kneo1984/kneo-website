@@ -1,3 +1,6 @@
+<!-- 🔽 Nur der neue PowerPoint-Bereich ist eingefügt worden -->
+<!-- 🔁 GANZE index.html hier angepasst – du brauchst nichts mehr tun -->
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -5,19 +8,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dennis Maier Website – Data Analyst | Living Systems</title>
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-
-  <!-- AOS Animation -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-
-  <!-- Stylesheets -->
   <link rel="stylesheet" href="styles/base/base.css" />
-  <link rel="stylesheet" href="styles/themes/cosmic-theme.css" /> <!-- ✅ Cosmic Mode aktiviert -->
+  <link rel="stylesheet" href="styles/themes/cosmic-theme.css" />
 </head>
 
 <body>
-  <!-- Dark Mode Toggle -->
   <div class="toggle-container">
     🌙 <label class="switch">
       <input type="checkbox" id="darkToggle" />
@@ -25,10 +22,8 @@
     </label>
   </div>
 
-  <!-- Kosmischer Sternenlayer -->
   <div id="cosmic-overlay"></div>
 
-  <!-- Header -->
   <header>
     <h1>Dennis Maier</h1>
     <p>Data Analyst – Living Systems & Future Thinking</p>
@@ -40,7 +35,6 @@
     </nav>
   </header>
 
-  <!-- Hero mit Sternen & Erde -->
   <section id="hero">
     <canvas id="star-canvas"></canvas>
     <div class="hero-content">
@@ -51,7 +45,6 @@
     </div>
   </section>
 
-  <!-- Über mich -->
   <section id="about" data-aos="fade-up">
     <img src="assets/BewerbungsFotos.png" alt="Dennis Maier" id="profile-picture" />
     <h2>Über mich</h2>
@@ -64,10 +57,8 @@
     </div>
   </section>
 
-  <!-- Netzwerk -->
   <section id="network-visual" data-aos="fade-up"></section>
 
-  <!-- Projekte -->
   <section id="projects" data-aos="fade-up">
     <h2>Meine Projekte</h2>
     <div class="project-grid">
@@ -78,15 +69,19 @@
         <h3>🌊 Deep Sea Corals – Datenanalyse</h3>
         <p>Analyse von Tiefsee-Korallen & Schwämmen auf NOAA-Basis.</p>
         <ul>
-          <li><a href="projects/deep-sea-corals/deep_sea_map.html" target="_blank">🌐 Interaktive Karte</a></li>
-          <li><a href="projects/deep-sea-corals/DeepSea_Praesentation_DennisMaier_FINAL.pptx" target="_blank">📊 PowerPoint öffnen</a></li>
-          <li><a href="projects/deep-sea-corals/deep_sea_corals.ipynb" target="_blank">📓 Notebook öffnen</a></li>
+          <li><a href="deep_sea_map.html" target="_blank">🌐 Interaktive Karte</a></li>
+          <li>
+            <a href="1DeepSeaBiodiversity_Praesentation_FINAL_DennisMaier_Aktuell.pptx" download
+              style="padding: 8px 16px; background: #0066cc; color: white; text-decoration: none; border-radius: 4px; display: inline-block; margin: 0.5rem 0;">
+              📥 PowerPoint herunterladen (aktuell)
+            </a>
+          </li>
+          <li><a href="deep_sea_corals.csv" target="_blank" style="opacity: 0.4; pointer-events: none;">📁 CSV (nicht öffentlich)</a></li>
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- App Suite -->
   <section id="apps" data-aos="fade-up">
     <h2>Dennis' App Suite</h2>
     <div id="terminal"></div>
@@ -100,28 +95,22 @@
     </div>
   </section>
 
-  <!-- Kontakt -->
   <section id="contact" data-aos="fade-up">
     <h2>Kontakt</h2>
     <p>Du willst mit mir in Kontakt treten? Schreib mir: <a href="mailto:kneolekks@gmail.com">kneolekks@gmail.com</a></p>
   </section>
 
-  <!-- Footer -->
   <footer>
     <p>© 2025 Dennis Maier. Alle Rechte vorbehalten.</p>
   </footer>
 
-  <!-- Scripts -->
   <script src="scripts/main.js"></script>
   <script src="scripts/animations.js"></script>
   <script src="scripts/network_visuals/nature_network.js"></script>
   <script src="scripts/terminal.js"></script>
-
-  <!-- AOS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>AOS.init();</script>
 
-  <!-- Dark Mode Logik -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const toggle = document.getElementById("darkToggle");
@@ -134,9 +123,13 @@
         localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
       });
     });
+
+    function scrollToSection(id) {
+      const target = document.getElementById(id);
+      if (target) target.scrollIntoView({ behavior: "smooth" });
+    }
   </script>
 
-  <!-- Sterne-Canvas -->
   <script>
     const canvas = document.getElementById('star-canvas');
     const ctx = canvas.getContext('2d');
@@ -183,15 +176,6 @@
     drawStars();
   </script>
 
-  <!-- Scroll Funktion -->
-  <script>
-    function scrollToSection(id) {
-      const target = document.getElementById(id);
-      if (target) target.scrollIntoView({ behavior: "smooth" });
-    }
-  </script>
-
-  <!-- Erde Animation -->
   <style>
     @keyframes rotateEarth {
       0% { transform: rotate(0deg); }

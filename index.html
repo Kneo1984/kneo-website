@@ -27,7 +27,6 @@
 </head>
 
 <body>
-  <!-- Dark Mode Toggle -->
   <div class="toggle-container">
     🌙 <label class="switch">
       <input type="checkbox" id="darkToggle" />
@@ -35,10 +34,8 @@
     </label>
   </div>
 
-  <!-- Kosmischer Hintergrund -->
   <div id="cosmic-overlay"></div>
 
-  <!-- Header -->
   <header>
     <h1>Dennis Maier</h1>
     <p>Data Analyst – Living Systems & Future Thinking</p>
@@ -50,7 +47,6 @@
     </nav>
   </header>
 
-  <!-- Hero-Bereich -->
   <section id="hero">
     <canvas id="star-canvas"></canvas>
     <div class="hero-content">
@@ -61,7 +57,6 @@
     </div>
   </section>
 
-  <!-- Über mich -->
   <section id="about" data-aos="fade-up">
     <img src="assets/BewerbungsFotos.png" alt="Dennis Maier" id="profile-picture" />
     <h2>Über mich</h2>
@@ -74,16 +69,15 @@
     </div>
   </section>
 
-  <!-- Netzwerkvisualisierung -->
   <section id="network-visual" data-aos="fade-up"></section>
 
-  <!-- Projekte -->
   <section id="projects" data-aos="fade-up">
     <h2>Meine Projekte</h2>
     <div class="project-grid">
       <div class="project-card" data-aos="fade-right">🌿 Nachhaltigkeit & Daten</div>
       <div class="project-card" data-aos="fade-up">🔮 AI & Mustererkennung</div>
       <div class="project-card" data-aos="fade-left">🚀 Automatisierung & Energie</div>
+
       <div class="project-card highlight-project" data-aos="zoom-in-up">
         <h3>🌊 Deep Sea Corals – Datenanalyse</h3>
         <p>Analyse von Tiefsee-Korallen & Schwämmen auf NOAA-Basis.</p>
@@ -95,14 +89,21 @@
               📥 PowerPoint herunterladen (aktuell)
             </a>
           </li>
-          <li><a href="deep_sea_corals.csv" target="_blank" style="opacity: 0.4; pointer-events: none;">📁 CSV (nicht öffentlich)</a></li>
-          <li><a href="assets/interactive_summary.pdf" target="_blank">📄 Interaktives PDF ansehen</a></li>
+          <li>
+            <a href="https://www.ncei.noaa.gov/maps/deep-sea-corals/database/NOAA_Deep_Sea_Corals.csv" target="_blank">
+              📁 Original-Datensatz (NOAA öffnen)
+            </a>
+          </li>
+          <li>
+            <a href="projects/deep-sea-corals/Deep_Sea_Corals_Notebook.ipynb" target="_blank">
+              📓 Jupyter Notebook ansehen
+            </a>
+          </li>
         </ul>
       </div>
     </div>
   </section>
 
-  <!-- App Suite -->
   <section id="apps" data-aos="fade-up">
     <h2>Dennis' App Suite</h2>
     <div id="app-launcher">
@@ -114,18 +115,15 @@
     </div>
   </section>
 
-  <!-- Kontakt -->
   <section id="contact" data-aos="fade-up">
     <h2>Kontakt</h2>
     <p>Du willst mit mir in Kontakt treten? Schreib mir: <a href="mailto:kneolekks@gmail.com">kneolekks@gmail.com</a></p>
   </section>
 
-  <!-- Footer -->
   <footer>
     <p>© 2025 Dennis Maier. Alle Rechte vorbehalten.</p>
   </footer>
 
-  <!-- Scripts -->
   <script src="scripts/main.js"></script>
   <script src="scripts/animations.js"></script>
   <script src="scripts/network_visuals/nature_network.js"></script>
@@ -152,7 +150,6 @@
     }
   </script>
 
-  <!-- Kosmisches Sternen-Canvas -->
   <script>
     const canvas = document.getElementById('star-canvas');
     const ctx = canvas.getContext('2d');
@@ -199,7 +196,6 @@
     drawStars();
   </script>
 
-  <!-- Erde-Animation -->
   <style>
     @keyframes rotateEarth {
       0% { transform: rotate(0deg); }

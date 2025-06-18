@@ -1,0 +1,152 @@
+
+
+/* 0 │ Datenbank bereitstellen */
+CREATE DATABASE IF NOT EXISTS abschlussprojekt;   -- DB-erstellen | Existenz-prüfen | Initialisieren
+USE abschlussprojekt;                             -- DB-wechsel | Kontext-setzen | Aktivieren
+
+/* 1 │ ERSTE ORIENTIERUNG – Wie groß ist der Ozean? */
+SELECT COUNT(*) AS total_rows FROM corals;        -- Zeilen-zählen | Größenordnung | Überblick
+
+/* 2 │ ROHREINIGUNG – Strings trimmen, Platzhalter setzen */
+SET @OLD_SAFE := @@SQL_SAFE_UPDATES;              -- Safe-Status-sichern | Variable | Bewahren
+SET SQL_SAFE_UPDATES = 0;                         -- Safe-Modus-aus | Massen-Update | Erlauben
+
+UPDATE corals                                     -- Tabelle-bereinigen | Bulk-Update | Start
+SET
+    Station        = COALESCE(NULLIF(TRIM(Station)       , ''), 'Unknown Station'),   -- Station | Trim/Default | Reinigen
+    SurveyID       = COALESCE(NULLIF(TRIM(SurveyID)      , ''), 'Unknown Survey'),    -- SurveyID | Trim/Default | Reinigen
+    Locality       = COALESCE(NULLIF(TRIM(Locality)      , ''), 'Unspecified'),       -- Locality | Trim/Default | Reinigen
+    EventID        = COALESCE(NULLIF(TRIM(EventID)       , ''), 'No Event'),          -- EventID | Trim/Default | Reinigen
+    ScientificName =               TRIM(ScientificName);                              -- ScientificName | Trim | Säubern
+
+SET SQL_SAFE_UPDATES = @OLD_SAFE;                 -- Safe-Modus-wiederan | Schutz | Abschluss
+
+/* 3 │ STAGE – Einmaliges Parsing & Casting */
+DROP TABLE IF EXISTS corals_stage;                -- Stage-löschen | Idempotent | Vorbereiten
+
+CREATE TABLE corals_stage AS                      -- Stage-erstellen | Selektieren | Casten
+SELECT
+    /* Datum harmonisieren */
+    CASE
+        WHEN ObservationDate REGEXP '^[0-9]{4}-[0-9]{2}-[0-9]{2}$'
+             THEN STR_TO_DATE(ObservationDate,'%Y-%m-%d')                -- ISO-Datum | Parse | Konvertieren
+        WHEN ObservationDate REGEXP '^[0-9]{4}$'
+             THEN STR_TO_DATE(CONCAT(ObservationDate,'-01-01'),'%Y-%m-%d')-- Jahresangabe | Ergänzen | Konvertieren
+        WHEN ObservationDate REGEXP '^[0-9]{2}/[0-9]{2}/[0-9]{4}$'
+             THEN STR_TO_DATE(ObservationDate,'%m/%d/%Y')                -- US-Format | Parse | Konvertieren
+        ELSE NULL                                                       -- Unbekannt | Null-setzen | Ausfiltern
+    END                                AS parsed_date,
+
+    /* Koordinaten & Tiefe */
+    CASE WHEN latitude  REGEXP '^-?[0-9]+(\\.[0-9]+)?$' THEN latitude  + 0 END AS lat_num,   -- Breitengrad | Validieren | Zahlen-Cast
+    CASE WHEN longitude REGEXP '^-?[0-9]+(\\.[0-9]+)?$' THEN longitude + 0 END AS lon_num,   -- Längengrad | Validieren | Zahlen-Cast
+    CASE WHEN DepthInMeters REGEXP '^-?[0-9]+(\\.[0-9]+)?$'
+           AND DepthInMeters <> '-999.0'              THEN DepthInMeters + 0 END AS depth_num, -- Tiefe | Validieren | Zahlen-Cast
+
+    /* Metadaten durchreichen */
+    Station, SurveyID, Locality, EventID, ScientificName                 -- Metadaten | Übernehmen | Behalten
+FROM corals
+WHERE   (ObservationDate REGEXP '^[0-9]{4}(-[0-9]{2}(-[0-9]{2})?)?$'
+         OR ObservationDate REGEXP '^[0-9]{2}/[0-9]{2}/[0-9]{4}$')      -- Datum-Filter | Gültig | Einlassen
+  AND latitude  REGEXP '^-?[0-9]+(\\.[0-9]+)?$'                          -- Breitengrad | Regex-Check | Einlassen
+  AND longitude REGEXP '^-?[0-9]+(\\.[0-9]+)?$';                         -- Längengrad | Regex-Check | Einlassen
+
+/* 4 │ CLEAN – Die goldene Faktentabelle für BI */
+DROP TABLE IF EXISTS corals_clean;                -- Clean-drop | Neuaufbau | Reset
+
+CREATE TABLE corals_clean AS                      -- Clean-create | Fakten | Final
+SELECT
+    UUID()                               AS row_id,          -- Surrogat-PK | Global-eindeutig | Identifizieren
+    parsed_date                          AS obs_date,        -- Beobachtungs-Datum | Übernehmen | Fakt
+    YEAR(parsed_date)                    AS obs_year,        -- Jahr | Dimension | Ableiten
+    MONTH(parsed_date)                   AS obs_month,       -- Monat | Dimension | Ableiten
+    (YEAR(parsed_date) DIV 10)*10        AS obs_decade,      -- Dekade | Bucket | Zeit
+
+    lat_num                              AS latitude,        -- Breitengrad | Wert | Final
+    lon_num                              AS longitude,       -- Längengrad | Wert | Final
+    depth_num                            AS depth_m,         -- Tiefe | Meter | Final
+
+    /* Tiefenzonen */
+    CASE
+        WHEN depth_num BETWEEN    0 AND    99.999 THEN '0–100 m'
+        WHEN depth_num BETWEEN  100 AND   499.999 THEN '100–500 m'
+        WHEN depth_num BETWEEN  500 AND   999.999 THEN '500–1000 m'
+        WHEN depth_num BETWEEN 1000 AND  2999.999 THEN '1000–3000 m'
+        WHEN depth_num BETWEEN 3000 AND  5999.999 THEN '3000–6000 m'
+        WHEN depth_num BETWEEN 6000 AND 10999.999 THEN '6000–11000 m'
+        ELSE NULL
+    END                                   AS depth_zone,     -- Tiefenzone | Klassifizieren | Visual-Bucket
+
+    Station, SurveyID, Locality, EventID, ScientificName     -- Metadaten | Kopieren | Bewahren
+FROM corals_stage
+WHERE parsed_date IS NOT NULL                  -- Datum-nicht-Null | Qualität | Sicherung
+  AND lat_num    IS NOT NULL                   -- Breitengrad-nicht-Null | Qualität | Sicherung
+  AND lon_num    IS NOT NULL;                  -- Längengrad-nicht-Null | Qualität | Sicherung
+
+/* 5 │ TURBO – Indexe für blitzschnelles Dashboard */
+ALTER TABLE corals_clean
+    ADD PRIMARY KEY (row_id),                 -- Primärschlüssel | Cluster | Performance
+    ADD INDEX idx_year       (obs_year),      -- Index | Jahr | Slice
+    ADD INDEX idx_depth_zone (depth_zone),    -- Index | Tiefenzone | Filter
+    ADD INDEX idx_species    (ScientificName(100)); -- Index | Artname | Suche
+
+/* 6 │ POWER-VIEWS – Vorgekaute Query-Snacks für Power BI */
+CREATE OR REPLACE VIEW v_yearly_counts AS        -- View | Jahres-Counts | Zeitreihe
+SELECT obs_year AS year, COUNT(*) AS observations
+FROM corals_clean
+GROUP BY obs_year
+ORDER BY obs_year;
+
+CREATE OR REPLACE VIEW v_depthzone_counts AS     -- View | Tiefenzonen-Counts | Balken
+SELECT depth_zone, COUNT(*) AS observations
+FROM corals_clean
+GROUP BY depth_zone
+ORDER BY FIELD(depth_zone,
+               '0–100 m','100–500 m','500–1000 m',
+               '1000–3000 m','3000–6000 m','6000–11000 m');
+
+CREATE OR REPLACE VIEW v_top10_species AS        -- View | Top-10-Arten | Ranking
+SELECT ScientificName, COUNT(*) AS observations
+FROM corals_clean
+GROUP BY ScientificName
+ORDER BY observations DESC
+LIMIT 10;
+
+CREATE OR REPLACE VIEW v_top20_species_depth AS  -- View | Top-20-Arten | Tiefe
+WITH ranked AS (
+    SELECT ScientificName
+    FROM corals_clean
+    GROUP BY ScientificName
+    ORDER BY COUNT(*) DESC
+    LIMIT 20
+)
+SELECT cc.*
+FROM corals_clean cc
+JOIN ranked r USING (ScientificName);
+
+CREATE OR REPLACE VIEW v_map_sample AS           -- View | Karten-Sample | Zufall
+SELECT *
+FROM corals_clean
+ORDER BY RAND()
+LIMIT 1000;
+
+/* 7 │ VALIDIERUNG – Schneller Smoke-Test */
+SELECT
+    COUNT(*)                                           AS anzahl_zeilen,                -- Zeilen | Gesamt | Roh
+    COUNT(*) - COUNT(Station)        AS fehlende_station,                               -- Fehlende | Station | Roh
+    COUNT(*) - COUNT(SurveyID)       AS fehlende_surveyid,                              -- Fehlende | SurveyID | Roh
+    COUNT(*) - COUNT(Locality)       AS fehlende_locality,                              -- Fehlende | Locality | Roh
+    COUNT(*) - COUNT(EventID)        AS fehlende_eventid,                               -- Fehlende | EventID | Roh
+    COUNT(*) - COUNT(ScientificName) AS fehlende_art                                    -- Fehlende | Art | Roh
+FROM corals;
+
+SELECT COUNT(*) AS fehlende_art_final             -- Fehlende-Art | Endkontrolle | Roh
+FROM corals
+WHERE ScientificName IS NULL OR TRIM(ScientificName)='';
+
+/* EPILOG – Power BI andocken, Kaffee holen, fertig. */
+SET SQL_SAFE_UPDATES = 0;                         -- Safe-Modus-aus | Update-Phase | Start
+UPDATE corals                                     -- Platzhalter-setzen | ScientificName | Default
+SET ScientificName = 'Unidentified sp.'
+WHERE ScientificName IS NULL OR TRIM(ScientificName) = '';
+SET SQL_SAFE_UPDATES = 1;                         -- Safe-Modus-ein | Schutz | Ende

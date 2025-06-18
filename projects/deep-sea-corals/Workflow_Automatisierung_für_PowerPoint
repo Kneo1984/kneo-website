@@ -1,0 +1,194 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import os
+import folium
+from folium.plugins import MarkerCluster
+from pptx import Presentation
+from pptx.util import Inches
+import webbrowser
+
+# Basisverzeichnis
+base_path = r"C:\Users\denni\OneDrive\Desktop\Abschlußprojekt"
+
+# Zeitspalten vorbereiten
+df['ObservationDate'] = pd.to_datetime(df['ObservationDate'], errors='coerce')
+df['Year'] = df['ObservationDate'].dt.year
+df['Month'] = df['ObservationDate'].dt.month
+df['Decade'] = (df['Year'] // 10) * 10
+
+# Plot-Stil
+sns.set(style="whitegrid", font_scale=1.1)
+plt.rcParams["figure.figsize"] = (10, 5)
+
+# 1. Beobachtungen pro Jahr
+yearly_counts = df['Year'].value_counts().sort_index()
+plt.figure()
+plt.plot(yearly_counts.index, yearly_counts.values, marker='o')
+plt.title("Beobachtungen pro Jahr")
+plt.xlabel("Jahr")
+plt.ylabel("Anzahl Beobachtungen")
+plt.grid(True)
+plt.tight_layout()
+plt.savefig(os.path.join(base_path, "01_beobachtungen_pro_jahr.png"))
+plt.close()
+
+# 2. Tiefenzonen-Verteilung
+depth_zone_counts = df['DepthZone'].value_counts().sort_index()
+plt.figure()
+depth_zone_counts.plot(kind='bar')
+plt.title("Verteilung der Beobachtungen nach Tiefenzonen")
+plt.xlabel("Tiefenzone")
+plt.ylabel("Anzahl Beobachtungen")
+plt.xticks(rotation=45)
+plt.grid(axis='y')
+plt.tight_layout()
+plt.savefig(os.path.join(base_path, "02_tiefenzonen.png"))
+plt.close()
+
+# 3. Top 10 Arten
+top_10_species = df['ScientificName'].value_counts().head(10)
+plt.figure()
+top_10_species.plot(kind='barh', color='steelblue')
+plt.title("Top 10 Arten im Datensatz")
+plt.xlabel("Anzahl Beobachtungen")
+plt.ylabel("Artname")
+plt.gca().invert_yaxis()
+plt.grid(axis='x')
+plt.tight_layout()
+plt.savefig(os.path.join(base_path, "03_top_10_arten.png"))
+plt.close()
+
+# 4. Scatterplot – Top 20 Arten nach Tiefe
+top_20 = df['ScientificName'].value_counts().head(20).index
+df_top = df[df['ScientificName'].isin(top_20)]
+
+plt.figure(figsize=(12, 6))
+sns.stripplot(data=df_top, x='DepthInMeters', y='ScientificName', alpha=0.4, jitter=True)
+plt.title("Top 20 Arten nach Meerestiefe (Scatterplot)")
+plt.xlabel("Tiefe in Metern")
+plt.ylabel("Artname")
+plt.grid(True)
+plt.tight_layout()
+plt.savefig(os.path.join(base_path, "04_top20_scatter.png"))
+plt.close()
+
+# 5. Boxplot – Top 20 Arten nach Tiefe
+plt.figure(figsize=(12, 8))
+sns.boxplot(
+    data=df_top,
+    y='ScientificName',
+    x='DepthInMeters',
+    hue='ScientificName',
+    palette='Blues',
+    dodge=False,
+    legend=False
+)
+plt.title("Verteilung der Meerestiefe – Top 20 Arten (Boxplot)")
+plt.xlabel("Tiefe in Metern")
+plt.ylabel("Artname")
+plt.grid(True)
+plt.tight_layout()
+plt.savefig(os.path.join(base_path, "05_top20_boxplot.png"))
+plt.close()
+
+# 6. Globale Karte als HTML erstellen und öffnen
+map_html_path = os.path.join(base_path, "deep_sea_map.html")
+
+sample_df = df[['latitude', 'longitude', 'ScientificName']].dropna().sample(n=1000, random_state=42)
+m = folium.Map(location=[0, 0], zoom_start=2)
+marker_cluster = MarkerCluster().add_to(m)
+
+for _, row in sample_df.iterrows():
+    folium.Marker(
+        location=[row['latitude'], row['longitude']],
+        popup=row['ScientificName']
+    ).add_to(marker_cluster)
+
+m.save(map_html_path)
+webbrowser.open("file:///" + map_html_path)
+
+# Bildpfade (ohne Karte, da manuell)
+bilder = {
+    "jahr": os.path.join(base_path, "01_beobachtungen_pro_jahr.png"),
+    "tiefe": os.path.join(base_path, "02_tiefenzonen.png"),
+    "arten": os.path.join(base_path, "03_top_10_arten.png"),
+    "scatter": os.path.join(base_path, "04_top20_scatter.png"),
+    "box": os.path.join(base_path, "05_top20_boxplot.png")
+}
+
+# PowerPoint Präsentation erstellen
+prs = Presentation()
+
+# Titelfolie
+slide = prs.slides.add_slide(prs.slide_layouts[0])
+slide.shapes.title.text = "Deep Sea Biodiversity Analysis"
+slide.placeholders[1].text = "Abschlussprojekt – Dennis Maier | DataSmart Point 2025"
+
+# Agenda
+slide = prs.slides.add_slide(prs.slide_layouts[1])
+slide.shapes.title.text = "Agenda"
+slide.placeholders[1].text = "- Einleitung\n- Ziel & Datenquelle\n- Explorative Analyse\n- Erkenntnisse & Visuals\n- Globale Karte\n- Fazit"
+
+# Einleitung
+slide = prs.slides.add_slide(prs.slide_layouts[1])
+slide.shapes.title.text = "Einleitung"
+slide.placeholders[1].text = (
+    "Die Tiefsee ist eines der geheimnisvollsten Ökosysteme unseres Planeten.\n"
+    "Dieses Projekt beleuchtet die biologische Vielfalt basierend auf über 500.000 Beobachtungen "
+    "aus der NOAA Deep Sea Coral Database."
+)
+
+# Ziel & Datenquelle
+slide = prs.slides.add_slide(prs.slide_layouts[1])
+slide.shapes.title.text = "Ziel & Datenquelle"
+slide.placeholders[1].text = (
+    "Ziel: Erkennen ökologischer Tiefenzonen & dominanter Arten\n"
+    "Quelle: NOAA Deep Sea Coral & Sponge Database\n"
+    "Tools: Python, Pandas, Seaborn, Matplotlib, PowerPoint"
+)
+
+# Visuals einfügen
+def add_visual_slide(title, img_path):
+    slide = prs.slides.add_slide(prs.slide_layouts[5])
+    slide.shapes.title.text = title
+    slide.shapes.add_picture(img_path, Inches(0.8), Inches(1.2), width=Inches(8.2))
+
+add_visual_slide("Beobachtungen pro Jahr", bilder["jahr"])
+add_visual_slide("Verteilung nach Meerestiefen", bilder["tiefe"])
+add_visual_slide("Top 10 Arten im Datensatz", bilder["arten"])
+add_visual_slide("Top 20 Arten nach Tiefe (Scatter)", bilder["scatter"])
+add_visual_slide("Top 20 Arten nach Tiefe (Boxplot)", bilder["box"])
+
+# Leere Folie für manuelle Karteneinfügung
+slide = prs.slides.add_slide(prs.slide_layouts[5])
+slide.shapes.title.text = "Globale Karte – bitte manuell einfügen"
+
+# Interpretation
+slide = prs.slides.add_slide(prs.slide_layouts[1])
+slide.shapes.title.text = "Globale Verteilung – Interpretation"
+slide.placeholders[1].text = (
+    "Hier siehst du die manuell eingefügte Karte mit 1.000 zufällig gewählten Beobachtungspunkten weltweit.\n\n"
+    "Hotspots liegen entlang von Kontinentalhängen und Seamounts.\n"
+    "Besonders aktiv: Pazifik, Nordatlantik, Südwestpazifik."
+)
+
+# Fazit
+slide = prs.slides.add_slide(prs.slide_layouts[1])
+slide.shapes.title.text = "Fazit & Ausblick"
+slide.placeholders[1].text = (
+    "- Biodiversität konzentriert sich in mittleren Tiefen (100–1000m)\n"
+    "- Porifera, Lophelia pertusa & andere als Tiefsee-Marker\n"
+    "- Schutz & Monitoring sind entscheidend\n"
+    "\nAusblick: KI-Klassifikation, Klimabezug, Schutzkonzepte"
+)
+
+# Abschluss
+slide = prs.slides.add_slide(prs.slide_layouts[1])
+slide.shapes.title.text = "Danke für Ihre Aufmerksamkeit"
+slide.placeholders[1].text = "Dennis Maier | Abschlussprojekt 2025 – Fragen willkommen"
+
+# Speichern
+output_file = os.path.join(base_path, "DeepSea_Praesentation_DennisMaier_FINAL.pptx")
+prs.save(output_file)
+print(f"\nPräsentation erfolgreich gespeichert unter:\n{output_file}")

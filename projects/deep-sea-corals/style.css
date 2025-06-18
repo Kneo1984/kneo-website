@@ -1,0 +1,18 @@
+:root{--bg:#0d0d0f;--fg:#f0f0f0;--neon:#00fcd1}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font-family:"Segoe UI",Arial,sans-serif}
+#stars{position:fixed;top:0;left:0;z-index:-1}
+header{padding:2rem;text-align:center;backdrop-filter:blur(6px);border-bottom:1px solid #ffffff22}
+h1{margin:0 0 1rem;font-size:clamp(1.6rem,4vw,2.4rem);color:var(--neon);text-shadow:0 0 8px var(--neon)}
+nav a{margin:0 .9rem;color:var(--neon);text-decoration:none;border-bottom:2px solid transparent;transition:.3s}
+nav a:hover{border-color:var(--neon)}
+section{padding:3rem 1rem;max-width:1200px;margin:auto}
+.grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.grid img{width:100%;border-radius:8px;box-shadow:0 0 12px #00fcd188;transition:.3s}
+.grid img:hover{transform:scale(1.03);box-shadow:0 0 15px var(--neon)}
+iframe{width:100%;height:480px;border:none;border-radius:8px;box-shadow:0 0 12px #00fcd188}
+ul{padding:0;list-style:none;text-align:center}
+ul li a{display:inline-block;margin:.4rem 1rem;padding:.4rem 1.2rem;
+background:#ffffff11;border-radius:6px;color:var(--neon);text-decoration:none;transition:.3s}
+ul li a:hover{background:var(--neon);color:var(--bg);box-shadow:0 0 10px var(--neon)}
+footer{text-align:center;padding:2rem;font-size:.85rem;opacity:.6}
+@media(max-width:600px){iframe{height:320px}}
